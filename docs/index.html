@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<title>Главная</title>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<!-- <style>body{opacity: 0;}</style> -->
+	<link rel="stylesheet" href="css/style.min.css?_v=20230326205554">
+	<!-- <link rel="shortcut icon" href=""> -->
+	<link rel="icon shortcut" type="image/svg+xml" href="img/favicon.svg">
+	<!-- <meta name="robots" content="noindex, nofollow"> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+	<div class="wrapper">
+		<header class="header">
+
+		</header>
+		<main>
+			<div class="home__container">
+				<div class="main">
+					<h1 class="tittle main__tittle" for="date-input">Days Between Dates</h1>
+					<!-- <div class="main__line"></div> -->
+					<div class="main__wrapper-form">
+						<h2 class="subtittle">Калькулятор днів між двома датами</h2>
+						<div class="main__wrapper-inputs">
+							<div class="main__wrapper-input">
+								<label for="dateStart">Початкова дата</label>
+								<div class="main__set-date">
+									<input class="main__input main__input-date-start" type="number" id="dateStartD" placeholder="дд" autocomplete="off" tabindex="1" maxlength="2">
+									<span class="main__date-split">.</span>
+									<input class="main__input main__input-date-start" type="number" id="dateStartM" placeholder="мм" autocomplete="off" tabindex="2" maxlength="2">
+									<span class="main__date-split">.</span>
+									<input class="main__input main__input-date-start-year main__input-date-start " type="number" id="dateStartY" placeholder="рррр" autocomplete="off" tabindex="3" maxlength="4">
+								</div>
+								<button class="btn main__btn-clear btn-ripple" data-btn="clear-start" data-ripple-clear="once" tabindex="-1">Очистити</button>
+							</div>
+							<div class="main__wrapper-input">
+								<label for="dateStart">Кінцева дата</label>
+								<div class="main__set-date">
+									<input class="main__input main__input-date-end" type="number" id="dateEndD" placeholder="дд" autocomplete="off" tabindex="4" typevriter maxlength="2">
+									<span class="main__date-split">.</span>
+									<input class="main__input main__input-date-end" type="number" id="dateEndM" placeholder="мм" autocomplete="off" tabindex="5" typevriter maxlength="2">
+									<span class="main__date-split">.</span>
+									<input class="main__input main__input-date-end-year main__input-date-end " type="number" id="dateEndY" placeholder="рррр" autocomplete="off" tabindex="6" typevriter maxlength="4">
+								</div>
+								<button class="btn main__btn-clear btn-ripple" data-btn="clear-end" data-ripple-clear="once" tabindex="-1">Очистити</button>
+							</div>
+						</div>
+						<div class="main__settings">
+							<label class="main__settings-checkbox-label main__checkbox-label-first-day">
+								<input class="main__settings-checkbox-input" type="checkbox" id="myCheckbox" data-input-setting="first-day" checked>
+								включно з першим днем
+							</label>
+							<label class="main__settings-checkbox-label main__checkbox-label-last-day">
+								<input class="main__settings-checkbox-input" type="checkbox" id="myCheckbox" data-input-setting="last-day" checked>
+								включно з останнім днем
+							</label>
+						</div>
+						<div class="btn-submit__wrapper">
+							<button data-ripple="once" class="btn main__btn-submit btn-ripple" data-btn="submit" tabindex="7">
+								<ion-icon name="calculator-outline"></ion-icon>
+								<span>Розрахувати</span>
+							</button>
+
+							<button data-ripple-clear="once" data-btn="clear-result" class="btn btn-submit__clear btn-ripple" tabindex="8">
+								<!-- <ion-icon name="close-outline"></ion-icon> -->
+								<!-- <img class="icon" src="img/icon/broom.svg" alt="brom"> -->
+								<span>Очистити</span>
+							</button>
+						</div>
+
+					</div>
+
+					<div class="days-between-dates__container">
+						<div class="days-between-dates"></div>
+					</div>
+		</main>
+		<footer class="footer">
+			<!-- <h1>footer</h1> -->
+		</footer>
+	</div>
+	<!-- <div id="popup" aria-hidden="true" class="popup">
+	<div class="popup__wrapper">
+		<div class="popup__content">
+			<div class="popup__btn">
+				<button data-close type="button" class="popup__close">
+				<img src="img/network/close.svg" alt="" class="popup-close">
+			</button>
+			</div>
+			<div class="popup__text">
+				<img src="img/network/popup-icon.svg" alt="" class="popup__icon-ok">
+				<div class="popup__title">Дякуємо вам за заявку! <br>
+					Найближчим часом наш консультант <br>
+					зв’яжеться з вами</div>
+					<div class="popup__subtitle">Будьте в курсі останніх новин компанії, <br>
+						підписуйтесь на нас в соціальних мережа</div>
+						<hr class="popup__line">
+						<div class="popup__social">
+							<a href="#" class="social-icon">
+								<img src="img/network/facebook.svg" alt="" class="social-link">
+							</a>
+							<a href="#" class="social-icon">
+								<img src="img/network/insta.svg" alt="" class="social-link">
+							</a>
+							<a href="#" class="social-icon">
+								<img src="img/network/yout.svg" alt="" class="social-link">
+							</a>
+						</div>
+
+			</div>
+		</div>
+	</div>
+</div> -->
+	<script src="js/app.min.js?_v=20230326205554"></script>
+	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js?_v=20230326205554"></script>
+</body>
+<!-- <div class="parent">
+		parent
+		<div class="child">child</div>
+	</div> -->
+
+</html>
