@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+	@@include('html/_head.htm',{
+	"title":"Главная"
+	})
+	<body>
+		<div class="wrapper">
+			@@include('html/_header.htm',{})
+			<main>
+					<div class="home__container">
+						<div class="main">
+							<h1 class="tittle main__tittle" for="date-input">Days Between Dates</h1>
+							<!-- <div class="main__line"></div> -->
+							<div class="main__wrapper-form">
+								<h2 class="subtittle">Калькулятор днів між двома датами</h2>
+								<div class="main__wrapper-inputs">
+									<div class="main__wrapper-input">
+										<label for="dateStart">Початкова дата</label>
+										<div class="main__set-date">
+											<input 
+												class="main__input main__input-date-start" 
+												type="number" 
+												id="dateStartD" 
+												placeholder="дд" 
+												autocomplete="off"
+												tabindex="1"
+												maxlength="2"
+
+											>
+											<span 
+												class="main__date-split">.</span>
+											<input 
+												class="main__input main__input-date-start" 
+												type="number" 
+												id="dateStartM" 
+												placeholder="мм" 
+												autocomplete="off"
+												tabindex="2"
+												maxlength="2"
+											>
+											<span class="main__date-split">.</span>
+											<input 
+												class="main__input main__input-date-start-year main__input-date-start " 
+												type="number" 
+												id="dateStartY" 
+												placeholder="рррр" 
+												autocomplete="off"
+												tabindex="3"
+												maxlength="4"
+											>
+										</div>
+										<button class="btn main__btn-clear btn-ripple" data-btn="clear-start" data-ripple-clear="once" tabindex="-1">Очистити</button>
+									</div>
+									<div class="main__wrapper-input">
+											<label for="dateStart">Кінцева дата</label>
+											<div class="main__set-date">
+												<input 
+													class="main__input main__input-date-end" 
+													type="number" 
+													id="dateEndD" 
+													placeholder="дд" 
+													autocomplete="off" 
+													tabindex="4"
+													typevriter
+													maxlength="2"
+												>
+												<span class="main__date-split">.</span>
+												<input 
+													class="main__input main__input-date-end" 
+													type="number" 
+													id="dateEndM" 
+													placeholder="мм" 
+													autocomplete="off"
+													tabindex="5"
+													typevriter
+													maxlength="2"
+												>
+												<span class="main__date-split">.</span>
+												<input 
+													class="main__input main__input-date-end-year main__input-date-end " 
+													type="number" 
+													id="dateEndY" 
+													placeholder="рррр" 
+													autocomplete="off"
+													tabindex="6"
+													typevriter
+													maxlength="4"
+												>
+											</div>
+											<button class="btn main__btn-clear btn-ripple" data-btn="clear-end" data-ripple-clear="once" tabindex="-1">Очистити</button>
+										</div>
+								</div>
+								<div class="main__settings">
+									<label class="main__settings-checkbox-label main__checkbox-label-first-day">
+										<input 
+											class="main__settings-checkbox-input" 
+											type="checkbox" 
+											id="myCheckbox"
+											data-input-setting="first-day"
+											checked>
+										включно з першим днем
+									</label>
+									<label class="main__settings-checkbox-label main__checkbox-label-last-day" >
+										<input 
+										class="main__settings-checkbox-input" 
+										type="checkbox" 
+										id="myCheckbox"
+										data-input-setting="last-day"
+										checked>
+										включно з останнім днем
+									</label>
+								</div>
+								<div class="btn-submit__wrapper">
+									<button data-ripple="once" class="btn main__btn-submit btn-ripple" data-btn="submit" tabindex="7">
+										<ion-icon name="calculator-outline"></ion-icon>
+										<span>Розрахувати</span>
+									</button>
+
+									<button data-ripple-clear="once" data-btn="clear-result" class="btn btn-submit__clear btn-ripple" tabindex="8">
+										<!-- <ion-icon name="close-outline"></ion-icon> -->
+										<!-- <img class="icon" src="@img/icon/broom.svg" alt="brom"> -->
+										<span>Очистити</span>
+									</button>
+								</div >
+								
+							</div>
+							
+							<div class="days-between-dates__container">
+								<div class="days-between-dates"></div>
+							</div>
+						</main>
+						@@include('html/_footer.htm',{})
+		</div>
+		@@include('html/_popup.htm',{})
+		@@include('html/_js.htm',{})
+	</body>
+	<!-- <div class="parent">
+		parent
+		<div class="child">child</div>
+	</div> -->
+</html>

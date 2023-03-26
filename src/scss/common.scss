@@ -1,0 +1,114 @@
+// Заголовки, общие БЄМ блоки и проче...
+//Menu/////////////
+.menu__none{
+    @media (max-width:$mobile){
+         display: none; 
+    }
+}
+.footer__padding{
+
+}
+.menu-header{
+    transform: translate(0,-39px);
+}
+.menu-footer{
+    transform: translate(0,39px);
+    @media (max-width:$mobile){
+         display: none; 
+    }
+
+}
+
+.menu {
+    position: relative;
+    z-index: 50;
+    // .menu__body
+
+    &__body {
+        background: #FFFFFF;
+        border: 1px solid #E2E2E2;
+        border-radius: 5px;
+        max-width: 100%;
+        transition: all 1.5s ease 0s;
+        
+        @media (max-width:$mobile){
+             position: fixed;
+             width: rem(290); 
+             height: rem(386);
+             top: -900px;
+             transition: all 0.3s ease 0s;
+             overflow: auto;
+             background-color: #fff;
+             border-radius: 8px;
+             
+            .menu-open &{
+                top: rem(0);
+                left: rem(50)
+                
+            }
+        }
+
+        
+    }
+
+    // .menu__list
+
+    &__list {
+        display: flex;
+        align-items: center;
+        justify-content: space-between  ;
+        position: relative;
+        @include adaptiveValue("padding-top",31 ,10 );
+        @include adaptiveValue("padding-bottom",30 ,10 );
+        @include adaptiveValue("padding-left",50 ,20 );
+        @include adaptiveValue("padding-right",39 ,20 );
+        @media (max-width:$mobile){
+            flex-direction: column;
+            text-align: center;
+            padding-top: rem(71);
+            font-weight: 400;
+            font-size: rem(18);
+            line-height: rem(24);
+            color:$mainColor;
+            gap: rem(35);
+
+        }
+        li:not(:last-child) ::after {
+            @media (max-width:$mobile){
+                content: "";
+                display: block;
+                position: absolute;
+                top: 200%;
+                width: 100%;
+                height: 1px;
+                background-color: #E2E2E2;
+            } 
+          }
+
+    }
+
+    // .menu__item
+
+    &__item{
+        position: relative;
+        @media (max-width:$mobile){
+            
+        }
+   
+    }
+
+    
+
+    // .menu__link
+
+    &__link {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;  
+        color: #888888;
+       
+  
+        
+
+    }
+}

@@ -1,0 +1,145 @@
+body::after {
+	content: "";
+	background-color: rgba(0, 0, 0, 0.5);
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	opacity: 0;
+	transition: opacity 0.8s ease 0s;
+	pointer-events: none;
+	z-index: 149;
+}
+.popup-show body::after {
+	opacity: 1;
+}
+.popup {
+	position: fixed;
+	top: 0;
+	left: 40%;
+	bottom: 0;
+	right: 0;
+	padding: 30px 10px;
+	transition: visibility 0.8s ease 0s;
+	visibility: hidden;
+	pointer-events: none;
+	@media (max-width:$mobile){
+		left: 0;
+		
+	}
+}
+.popup_show {
+	z-index: 150;
+	visibility: visible;
+	overflow: auto;
+	pointer-events: auto;
+	
+}
+.popup_show .popup__content {
+	visibility: visible;
+	transform: scale(1);
+}
+.popup__wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-height: 100%;
+	flex: 1 1 auto;
+	width: rem(393);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	@media (max-width:$mobile){
+		 width: rem(290); 
+	}
+}
+.popup__content {
+	visibility: hidden;
+	transform: scale(0);
+	transition: transform 0.3s ease 0s;
+	background-color: #eee;
+	padding: 20px;
+	width: 100%;
+	max-width: 900px;
+	border-radius: 20px;
+	.lock & {
+		visibility: visible;
+	}
+}
+/////////////////////////////
+.popup {
+	
+	// .popup__close
+	&__btn{
+		display: flex;
+		justify-content: flex-end;
+	}
+	&__close {
+		
+		
+	}
+
+	// .popup__text
+
+	&__text {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		
+	}
+
+	// .popup__icon-ok
+
+	&__icon-ok {
+	}
+
+	// .popup__title
+
+	&__title {
+		font-weight: 400;
+		font-size: rem(18);
+		line-height: rem(24);
+		text-align: center;
+		@include adaptiveValue("padding-top",18 ,10 );
+	}
+
+	// .popup__subtitle
+
+	&__subtitle {
+		font-weight: 400;
+		font-size: rem(16);
+		line-height: rem(24);
+		text-align: center;
+		color: #828282;
+		@include adaptiveValue("padding-top",52 ,30 );
+		@include adaptiveValue("padding-bottom",15 ,10 );
+	}
+
+	// .popup__line
+
+	&__line {
+		display: block;
+		border: 1px solid #E2E2E2;
+		@include adaptiveValue("width",340 ,240 );
+		margin: 0 auto;
+	}
+
+	// .popup__social
+
+	&__social {
+		display: flex;
+	    justify-content:center;
+		gap: rem(17);
+		@include adaptiveValue("padding-top", 22, 10);
+	}
+}
+.popup-close {
+	
+
+}
+.social-icon {
+	
+}
+.social-link {
+}

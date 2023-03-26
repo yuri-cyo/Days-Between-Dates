@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+	@@include('html/_head.htm',{
+	"title":"Главная"
+	})
+	<body>
+		<div class="wrapper">
+			@@include('html/_header.htm',{})
+            <main class="page-contacts contacts-page">
+               <div class="menu__container-big">
+                <div class=" menu menu-header">
+                    
+                    <nav class="menu__body">
+                        <ul class="menu__list">
+                            <li class="menu__item"><a href="aboute.html" class="menu__link">Про компанію</a></li>
+                                <li class="menu__item"><a href="network.html" class="menu__link">Мережа СТЦ</a></li>
+                                <li class="menu__item"><a href="home.html" class="menu__link">Інтернет-магазин</a></li>
+                                <li class="menu__item"><a href="solutions.html" class="menu__link">Готові рішення для СТО</a></li>
+                                <li class="menu__item"><a href="contacts.html" class="menu__link">Контакти</a></li>
+                        </ul>
+                    </nav>
+                </div>
+               </div>
+                <div class="contacts__container-big">
+                    <section class="contacts">
+                        <div class="contacts__information">
+                        <div class="contacts__title">Контактна інформація</div>
+                            <div class="contacts__tablet">
+                                <div class="contacts__address">
+                                    <p class="address__text">Адреса офісу:</p>
+                                    <p class="address__text">Івана Підкови, 17г</p>
+                                    <p class="address__text">Рівне, Рівненська область, 33000</p>
+                                    <a href="#" class="address__link">адреси сервісно-технічних центрів</a>
+                                </div>
+                                <div class="contacts__phone">
+                                    <p class="phone__numbers">0362 46 0443</p>
+                                    <p class="phone__numbers">0800 21 4343 <span>(безкоштовно)</span></p>
+                                    <p class="phone__numbers">+38 067 362 4343 <span class="phone__span">(viber)</span></p>
+                                    <p class="phone__numbers">067 208 34 70 <span>(Регіональний)</span></p>
+                                </div>
+                            </div>
+                        <div class="contacts__tablet-email">
+                            <div class="contacts__email">
+                                <div class="email__mail">пошта: <a href="#" class="email__link">info@restart.ua</a></div>
+                                <div class="email__mail">facebook: <a href="#" class="email__link">restart.ua</a></div>
+                            </div>
+                            <div class="contacts__schedule">
+                                <p class="schedule__work">Розклад роботи офісу:
+                                </p>
+                                <p class="schedule__work">Пн-Пт – з 9:00 до 18:00
+                                </p>
+                                <p class="schedule__work">Субота – з 9:00 до 14:00
+                                </p>
+                                <p class="schedule__work">Неділя – вихідний день</p>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="contacts__map">
+                        <img src="../img/contacts/map.png" alt="" class="map__image">
+                        </div>
+                    </section>
+               </div>
+               <div class="contacts__blok"></div>
+               <div class="menu__container-big ">
+                <div class=" menu menu-header menu__none">
+                    <!-- <button type="button" class="menu__icon icon-menu"><span></span></button> -->
+                    <nav class="menu__body">
+                        <ul class="menu__list">
+                            <li class="menu__item"><a href="aboute.html" class="menu__link">Про компанію</a></li>
+                                <li class="menu__item"><a href="network.html" class="menu__link">Мережа СТЦ</a></li>
+                                <li class="menu__item"><a href="home.html" class="menu__link">Інтернет-магазин</a></li>
+                                <li class="menu__item"><a href="solutions.html" class="menu__link">Готові рішення для СТО</a></li>
+                                <li class="menu__item"><a href="contacts.html" class="menu__link">Контакти</a></li>
+                        </ul>
+                    </nav>
+                </div>
+               </div>
+            </main>
+            @@include('html/_footer.htm',{})
+		</div>
+		@@include('html/_popup.htm',{})
+		@@include('html/_js.htm',{})
+	</body>
+</html>

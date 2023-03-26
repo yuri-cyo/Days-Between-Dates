@@ -1,0 +1,24 @@
+//====================================================================================================
+// @import "vars";
+footer {
+	// background-color: #343438a7;
+	background: linear-gradient(45deg, rgba(92, 92, 92, 0.44) 0%, rgba(106, 105, 115, 0.44) 50%, rgba(92, 92, 92, 0.44) 100%);
+	backdrop-filter: blur(20px);
+	// box-shadow: $box-shadow-footer;
+	min-height: rem(100);
+	// margin: 0 rem(15) 0 rem(15);
+	border-radius: $border-radius-footer;
+
+	@media (max-width:$tablet){
+		border-radius: $border-radius-footer-md2;
+	}
+	@media (max-width:$mobile){
+		border-radius: $border-radius-footer-md3;
+	}
+	@media (max-width: rem(1355)){
+		// margin: rem(7) rem(7) rem(0) rem(7);
+	}
+	
+}
+
+//====================================================================================================
