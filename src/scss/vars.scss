@@ -179,8 +179,9 @@ input::-webkit-inner-spin-button {
 
 @keyframes blink {
 	50% {
-	box-shadow: inset 6px 6px 6px #ff0000,
-		inset -6px -6px 6px #db3f0b;
+	box-shadow: 0px 0px 20px #ff0000,
+		0px 0px 20px #ff0000;
+		background-color: #f9b7b0;
 	}
 }
 
