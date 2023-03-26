@@ -376,7 +376,7 @@ export class InputsDbd {
 
 	
 
-		eventTargetInput.addEventListener('keyup', (e)=> {
+		eventTargetInput.addEventListener('onkeypress', (e)=> {
 			if (e.key === 'Backspace') {
 					this.countBackspace += 1
 			}

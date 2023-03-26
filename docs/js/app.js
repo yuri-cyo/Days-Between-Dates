@@ -362,7 +362,7 @@
                 lastCursorPosition = eventTargetInput.selectionStart;
                 console.log("lastCursorPosition", lastCursorPosition);
             }));
-            eventTargetInput.addEventListener("keyup", (e => {
+            eventTargetInput.addEventListener("onkeypress", (e => {
                 if ("Backspace" === e.key) this.countBackspace += 1;
                 if (8 === e.keyCode && 0 === e.target.selectionStart) {
                     //! Backspace key
