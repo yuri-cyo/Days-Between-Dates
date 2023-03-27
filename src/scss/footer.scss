@@ -1,11 +1,12 @@
 //====================================================================================================
 // @import "vars";
 footer {
+	margin-top: rem(30);
 	// background-color: #343438a7;
 	background: linear-gradient(45deg, rgba(92, 92, 92, 0.44) 0%, rgba(106, 105, 115, 0.44) 50%, rgba(92, 92, 92, 0.44) 100%);
 	backdrop-filter: blur(20px);
 	// box-shadow: $box-shadow-footer;
-	min-height: rem(100);
+	// min-height: rem(100);
 	// margin: 0 rem(15) 0 rem(15);
 	border-radius: $border-radius-footer;
 
@@ -20,5 +21,72 @@ footer {
 	}
 	
 }
+
+.footer {
+	padding-top: rem(30);
+	padding-bottom: rem(30);
+
+	a {
+		display: inline-block;
+	}
+
+	&__container {
+		display: flex;
+		// flex-direction: row;
+		justify-content:center;
+		align-items: center;
+		text-align: center;
+	}
+
+	&__my-portfolio-wrapper {
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__my-portfolio {
+		margin-bottom: rem(10);
+		// margin-right: rem(50);
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	&__project-link {
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	&__container-social {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: rem(20);
+	}
+	
+	&__social {
+		margin-top: rem(10);
+		font-size: rem(20);
+		
+		&:hover {
+			color: #ee958b;
+		}
+	}
+
+	&_icon-767544 {
+	}
+
+	&_icon-logo-linkedin {
+	}
+
+	&_icon-logo-github {
+	}
+
+	&_icon-telegram {
+	}
+}
+.button {
+}
+
 
 //====================================================================================================

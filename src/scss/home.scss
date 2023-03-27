@@ -232,11 +232,11 @@ main {
 		position: relative;
 		transition: all 0.3s ease 0s;
 		&:after {
-			transition: all 0.3s ease 0s;
+			// transition: all 0.3s ease 0s;
 		}
 		&:hover {
 			// color: #fb7866;
-			transition: all 0.3s ease 0s;
+			// transition: all 0.3s ease 0s;
 			&:before {
 				
 			}
@@ -391,14 +391,6 @@ main {
 }
 
 
-.dbd {
-	&__tittle {
-		font-size: rem(35);
-	}
-
-}
-
-
 
 
 
@@ -408,6 +400,7 @@ main {
 .btn-ripple{
 	position: relative;
 	overflow: hidden;
+	// -webkit-overflow: hidden !important;
 	transition: background-color 0.3s ease 0s;
 }
 
@@ -416,7 +409,9 @@ main {
 }
 
 .ripple {
+	// border: 2px solid #342334;
 	position: absolute;
+	// display: flex;
 	border-radius: 50%;
 	background-color: #b541344b;
 	// border: 1px solid rgba(255, 255, 255, 0.5);
