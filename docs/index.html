@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20230326214246">
+	<link rel="stylesheet" href="css/style.min.css?_v=20230327203335">
 	<!-- <link rel="shortcut icon" href=""> -->
 	<link rel="icon shortcut" type="image/svg+xml" href="img/favicon.svg">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
@@ -21,7 +21,10 @@
 		<main>
 			<div class="home__container">
 				<div class="main">
-					<h1 class="tittle main__tittle" for="date-input">Days Between Dates</h1>
+					<h1 class="tittle main__tittle" for="date-input">
+						<img class="logo" src="img/icon/logo.svg" alt="">
+						Days Between Dates
+					</h1>
 					<!-- <div class="main__line"></div> -->
 					<div class="main__wrapper-form">
 						<h2 class="subtittle">Калькулятор днів між двома датами</h2>
@@ -61,13 +64,15 @@
 						</div>
 						<div class="btn-submit__wrapper">
 							<button data-ripple="once" class="btn main__btn-submit btn-ripple" data-btn="submit" tabindex="7">
-								<ion-icon name="calculator-outline"></ion-icon>
+								<!-- <ion-icon name="calculator-outline"></ion-icon> -->
+								<span class="_icon-calc"></span>
 								<span>Розрахувати</span>
 							</button>
 
 							<button data-ripple-clear="once" data-btn="clear-result" class="btn btn-submit__clear btn-ripple" tabindex="8">
 								<!-- <ion-icon name="close-outline"></ion-icon> -->
 								<!-- <img class="icon" src="img/icon/broom.svg" alt="brom"> -->
+								<span class="_icon-clear"></span>
 								<span>Очистити</span>
 							</button>
 						</div>
@@ -79,7 +84,31 @@
 					</div>
 		</main>
 		<footer class="footer">
-			<!-- <h1>footer</h1> -->
+			<div class="footer__container">
+				<div class="footer__my-portfolio-wrapper">
+					<a target="_blank" href="http://yuri-chapyuk.space" class="footer__my-portfolio">
+						<span class="_icon-767544"></span>
+						Developed: Yuriy Chapyuk
+						<span class="_icon-767544"></span>
+					</a>
+					<a target="_blank" href="https://github.com/Scarbor0/Days-Between-Dates/" class="footer__project-link">
+						<span class="_icon-767544"></span>
+						Project link
+						<span class="_icon-767544"></span>
+					</a>
+					</di>
+					<div class="footer__container-social">
+						<a target="_blank" class="footer__social button " href="https://www.linkedin.com/in/yuriy-chapyuk-438277234/">
+							<span class="_icon-logo-linkedin"></span>
+						</a>
+						<a target="_blank" class="footer__social button" href="https://github.com/Scarbor0">
+							<span class="_icon-logo-github"></span>
+						</a>
+						<a target="_blank" class="footer__social button" href="https://t.me/Scarbor0">
+							<span class="_icon-telegram"></span>
+						</a>
+					</div>
+				</div>
 		</footer>
 	</div>
 	<!-- <div id="popup" aria-hidden="true" class="popup">
@@ -114,8 +143,8 @@
 		</div>
 	</div>
 </div> -->
-	<script src="js/app.min.js?_v=20230326214246"></script>
-	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js?_v=20230326214246"></script>
+	<script src="js/app.min.js?_v=20230327203335"></script>
+	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js?_v=20230327203335"></script>
 </body>
 <!-- <div class="parent">
 		parent

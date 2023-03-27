@@ -2,6 +2,68 @@
 
 @charset "UTF-8";
 
+@font-face {
+  font-family: icomoon;
+  font-display: swap;
+  src: url("../fonts/icomoon.woff2") format("woff2"), url("../fonts/icomoon.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "icomoon";
+  src: url(".fonts/icomoon.eot?mbjaa2");
+  src: url(".fonts/icomoon.eot?mbjaa2#iefix") format("embedded-opentype"), url(".fonts/icomoon.ttf?mbjaa2") format("truetype"), url(".fonts/icomoon.woff?mbjaa2") format("woff"), url(".fonts/icomoon.svg?mbjaa2#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^=_icon-],
+[class*=" _icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "icomoon" !important;
+  margin-right: 0.2em;
+  margin-left: 0.2em;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+._icon-telegram:before {
+  content: "\e906";
+}
+
+._icon-767544:before {
+  content: "\e902";
+}
+
+._icon-person-circle-outline:before {
+  content: "\e903";
+}
+
+._icon-logo-github:before {
+  content: "\e904";
+}
+
+._icon-logo-linkedin:before {
+  content: "\e905";
+}
+
+._icon-clear:before {
+  content: "\e900";
+}
+
+._icon-calc:before {
+  content: "\e901";
+}
+
 * {
   padding: 0px;
   margin: 0px;
@@ -302,14 +364,14 @@ body::after {
 
 .tittle {
   font-size: 3rem;
-  font-weight: 900;
+  font-weight: 600;
   letter-spacing: 0.125rem;
   color: #ffffff;
   text-align: center;
 }
 
 .subtittle {
-  font-weight: 700;
+  font-weight: 500;
   text-align: center;
 }
 
@@ -373,23 +435,6 @@ label {
   font-weight: 600;
 }
 
-.dbd-table {
-  text-align: start;
-  display: block;
-  margin-top: 2.5rem;
-}
-
-.dbd-table th {
-  text-align: end;
-  padding-right: 1.25rem;
-  line-height: 50px;
-}
-
-.dbd-table tr {
-  border-bottom: #f6ecfd solid 1px;
-  width: 43.75rem;
-}
-
 .result-render-dbd {
   -webkit-animation-name: fadeIn;
           animation-name: fadeIn;
@@ -410,7 +455,65 @@ label {
   position: relative;
   background-color: rgba(0, 0, 0, 0.2666666667);
   border-radius: 1.25rem;
-  padding: 1.25rem;
+}
+
+.tittle-result {
+  font-weight: 800;
+}
+
+.dbd__table {
+  text-align: start;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-top: 2.5rem;
+}
+
+.dbd__tittle {
+  margin-top: 0.625rem;
+  letter-spacing: 0.1875rem;
+}
+
+.dbd__title-result-wrapper {
+  background-color: rgba(37, 37, 37, 0.537254902);
+  border-radius: 0.9375rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  max-width: 50rem;
+  display: flex;
+  padding: 0 0.625rem;
+}
+
+.dbd__title-result-wrapper:nth-child(2n) {
+  background: none;
+}
+
+.dbd__column-title {
+  padding-right: 1.25rem;
+  line-height: 50px;
+  min-width: 11em;
+  text-align: end;
+  font-weight: 700;
+  color: #d9d0f0;
+}
+
+.dbd__column-result {
+  line-height: 50px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-bottom: -1px;
+  padding: 0 1.25rem;
+}
+
+.dbd__error-result {
+  line-height: normal;
 }
 
 .resultFadeOut {
@@ -477,17 +580,15 @@ label {
 
 @-webkit-keyframes blink {
   50% {
-    -webkit-box-shadow: 0px 0px 20px #ff0000, 0px 0px 20px #ff0000;
-    box-shadow: 0px 0px 20px #ff0000, 0px 0px 20px #ff0000;
-    background-color: #f9b7b0;
+    -webkit-box-shadow: inset 6px 6px 6px #ff0000, inset -6px -6px 6px #db3f0b;
+            box-shadow: inset 6px 6px 6px #ff0000, inset -6px -6px 6px #db3f0b;
   }
 }
 
 @keyframes blink {
   50% {
-    -webkit-box-shadow: 0px 0px 20px #ff0000, 0px 0px 20px #ff0000;
-    box-shadow: 0px 0px 20px #ff0000, 0px 0px 20px #ff0000;
-    background-color: #f9b7b0;
+    -webkit-box-shadow: inset 6px 6px 6px #ff0000, inset -6px -6px 6px #db3f0b;
+            box-shadow: inset 6px 6px 6px #ff0000, inset -6px -6px 6px #db3f0b;
   }
 }
 
@@ -507,6 +608,10 @@ label {
   -webkit-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
+}
+
+.logo {
+  width: 1.75em;
 }
 
 .icon {
@@ -567,12 +672,78 @@ label {
 }
 
 footer {
+  margin-top: 1.875rem;
   background: -o-linear-gradient(45deg, rgba(92, 92, 92, 0.44) 0%, rgba(106, 105, 115, 0.44) 50%, rgba(92, 92, 92, 0.44) 100%);
   background: linear-gradient(45deg, rgba(92, 92, 92, 0.44) 0%, rgba(106, 105, 115, 0.44) 50%, rgba(92, 92, 92, 0.44) 100%);
   -webkit-backdrop-filter: blur(20px);
           backdrop-filter: blur(20px);
-  min-height: 6.25rem;
   border-radius: 3.125rem 3.125rem 0 0;
+}
+
+.footer {
+  padding-top: 1.875rem;
+  padding-bottom: 1.875rem;
+}
+
+.footer a {
+  display: inline-block;
+}
+
+.footer__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+
+.footer__my-portfolio-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.footer__my-portfolio {
+  margin-bottom: 0.625rem;
+}
+
+.footer__my-portfolio:hover {
+  text-decoration: underline;
+}
+
+.footer__project-link:hover {
+  text-decoration: underline;
+}
+
+.footer__container-social {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1.25rem;
+}
+
+.footer__social {
+  margin-top: 0.625rem;
+  font-size: 1.25rem;
+}
+
+.footer__social:hover {
+  color: #ee958b;
 }
 
 *:focus {
@@ -774,18 +945,6 @@ main {
   transition: all 0.3s ease 0s;
 }
 
-.main__settings-checkbox-label:after {
-  -webkit-transition: all 0.3s ease 0s;
-  -o-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
-}
-
-.main__settings-checkbox-label:hover {
-  -webkit-transition: all 0.3s ease 0s;
-  -o-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
-}
-
 .main__settings-checkbox-label:hover:after {
   content: "";
   position: absolute;
@@ -935,10 +1094,6 @@ main {
   font-size: 1.875rem;
 }
 
-.dbd__tittle {
-  font-size: 2.1875rem;
-}
-
 .btn-ripple {
   position: relative;
   overflow: hidden;
@@ -1068,6 +1223,22 @@ main {
     margin-bottom: 3.125rem;
   }
 
+  .result-render-dbd {
+    padding: 1.25rem;
+  }
+
+  .tittle-result {
+    font-size: 2.1875rem;
+  }
+
+  .dbd__table {
+    font-size: 1.875rem;
+  }
+
+  .dbd__error-result {
+    font-size: 1.875rem;
+  }
+
   .menu__list {
     padding-top: 1.9375rem;
   }
@@ -1110,6 +1281,24 @@ main {
 }
 
 @media (max-width: 61.99875em) {
+  .dbd__title-result-wrapper {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    background: none;
+  }
+
+  .dbd__column-title {
+    text-align: center;
+    background-color: rgba(37, 37, 37, 0.537254902);
+    border-radius: 0.9375rem;
+  }
+
+  .dbd__column-result {
+    text-align: center;
+  }
+
   footer {
     border-radius: 2.40625rem 2.40625rem 0 0;
   }
@@ -1310,7 +1499,7 @@ main {
   }
 
   .tittle {
-    font-size: 1.6875rem;
+    font-size: 1.5rem;
   }
 
   .subtittle {
@@ -1319,6 +1508,22 @@ main {
 
   .subtittle {
     margin-bottom: 1.25rem;
+  }
+
+  .result-render-dbd {
+    padding: 0.625rem;
+  }
+
+  .tittle-result {
+    font-size: 1.5625rem;
+  }
+
+  .dbd__table {
+    font-size: 1rem;
+  }
+
+  .dbd__error-result {
+    font-size: 1.25rem;
   }
 
   .menu__list {
@@ -1417,15 +1622,15 @@ main {
     }
 }
 
-@supports (font-size: clamp( 1.6875rem , 1.3232655502rem  +  2.009569378vw , 3rem )) {
+@supports (font-size: clamp( 1.5rem , 1.0837320574rem  +  2.2966507177vw , 3rem )) {
     .tittle {
-      font-size: clamp( 1.6875rem , 1.3232655502rem  +  2.009569378vw , 3rem );
+      font-size: clamp( 1.5rem , 1.0837320574rem  +  2.2966507177vw , 3rem );
     }
 }
 
-@supports not (font-size: clamp( 1.6875rem , 1.3232655502rem  +  2.009569378vw , 3rem )) {
+@supports not (font-size: clamp( 1.5rem , 1.0837320574rem  +  2.2966507177vw , 3rem )) {
     .tittle {
-      font-size: calc(1.6875rem + 1.3125 * (100vw - 18.125rem) / 65.3125);
+      font-size: calc(1.5rem + 1.5 * (100vw - 18.125rem) / 65.3125);
     }
 }
 
@@ -1450,6 +1655,54 @@ main {
 @supports not (margin-bottom: clamp( 1.25rem , 0.7296650718rem  +  2.8708133971vw , 3.125rem )) {
     .subtittle {
       margin-bottom: calc(1.25rem + 1.875 * (100vw - 18.125rem) / 65.3125);
+    }
+}
+
+@supports (padding: clamp( 0.625rem , 0.4515550239rem  +  0.956937799vw , 1.25rem )) {
+    .result-render-dbd {
+      padding: clamp( 0.625rem , 0.4515550239rem  +  0.956937799vw , 1.25rem );
+    }
+}
+
+@supports not (padding: clamp( 0.625rem , 0.4515550239rem  +  0.956937799vw , 1.25rem )) {
+    .result-render-dbd {
+      padding: calc(0.625rem + 0.625 * (100vw - 18.125rem) / 65.3125);
+    }
+}
+
+@supports (font-size: clamp( 1.5625rem , 1.3890550239rem  +  0.956937799vw , 2.1875rem )) {
+    .tittle-result {
+      font-size: clamp( 1.5625rem , 1.3890550239rem  +  0.956937799vw , 2.1875rem );
+    }
+}
+
+@supports not (font-size: clamp( 1.5625rem , 1.3890550239rem  +  0.956937799vw , 2.1875rem )) {
+    .tittle-result {
+      font-size: calc(1.5625rem + 0.625 * (100vw - 18.125rem) / 65.3125);
+    }
+}
+
+@supports (font-size: clamp( 1rem , 0.7571770335rem  +  1.3397129187vw , 1.875rem )) {
+    .dbd__table {
+      font-size: clamp( 1rem , 0.7571770335rem  +  1.3397129187vw , 1.875rem );
+    }
+}
+
+@supports not (font-size: clamp( 1rem , 0.7571770335rem  +  1.3397129187vw , 1.875rem )) {
+    .dbd__table {
+      font-size: calc(1rem + 0.875 * (100vw - 18.125rem) / 65.3125);
+    }
+}
+
+@supports (font-size: clamp( 1.25rem , 1.0765550239rem  +  0.956937799vw , 1.875rem )) {
+    .dbd__error-result {
+      font-size: clamp( 1.25rem , 1.0765550239rem  +  0.956937799vw , 1.875rem );
+    }
+}
+
+@supports not (font-size: clamp( 1.25rem , 1.0765550239rem  +  0.956937799vw , 1.875rem )) {
+    .dbd__error-result {
+      font-size: calc(1.25rem + 0.625 * (100vw - 18.125rem) / 65.3125);
     }
 }
 
