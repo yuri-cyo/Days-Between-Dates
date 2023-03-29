@@ -64,20 +64,31 @@ export class InputsDbd {
 		this.resultDbdVisible = false;
 	} 
 
-	validEventTargetInput(eventTargetInput, count) {
-		const eValue = eventTargetInput.value;
-		if (count === 3 || count === 4 || count === 5) {
-			if (eValue !== '') {
+	changeplaceholderContent(eventTargetInput, count) {
+		if (count >= 3 && count <= 6) {
+			if (eventTargetInput.value !== ''
+				|| this.$inputEndD.value !== ''
+				|| this.$inputEndM.value !== ''
+				|| this.$inputEndY.value !== ''
+				) {
 				this.$inputEndD.placeholder = 'дд'
 				this.$inputEndM.placeholder = 'мм'
 				this.$inputEndY.placeholder = 'рррр'
-			} else {
+			} else if (this.$inputEndD.value === ''
+			&& this.$inputEndM.value === ''
+			&& this.$inputEndY.value === ''){
 				this.$inputEndD.placeholder = this.currentEndD;
 				this.$inputEndM.placeholder = this.currentEndM;
 				this.$inputEndY.placeholder = this.currentEndY;
 			}
 			
 		}
+	}
+
+	
+
+	validEventTargetInput(eventTargetInput, count) {
+		const eValue = eventTargetInput.value;
 
 		if (count === 2 || count === 5) {
 			console.log(count);
@@ -94,10 +105,15 @@ export class InputsDbd {
 				this.$el[count + 1].focus();
 			}
 
-			if (count === 0 || count === 3 && this.isLoad === true) {
+			if (count === 0 
+				|| count === 3 
+				&& this.isLoad === true
+				&& this.$inputM.value === ''
+				&& this.$inputY.value === '') {
 				console.error('(count === 0 || count === 3)')
 				if (Number(eventTargetInput.value) > 31) {
 					this.colorErrorInputOverDate(eventTargetInput, '31', 'red', 'black', count)
+					
 				}
 				if (eventTargetInput.value === '00') {
 					this.colorErrorInputOverDate(eventTargetInput, '01', 'red', 'black', count)
@@ -149,12 +165,10 @@ export class InputsDbd {
 			const d = Number(this.$inputD.value)
 			const m = Number(this.$inputM.value)
 			const y = Number(this.$inputY.value)
-			
 
 			const dEnd = Number(this.$inputEndD.value)
 			const mEnd = Number(this.$inputEndM.value)
 			const yEnd = Number(this.$inputEndY.value)
-			
 
 			const calendarGen = (year, index)=> {
 				const daysArray = [];
@@ -163,16 +177,9 @@ export class InputsDbd {
 					const daysInMonth = new Date(year, i + 1, 0).getDate();
 					daysArray.push(daysInMonth);
 				}
-				// console.log('autoRenameDayInYear FN');
 				return daysArray[index];
 			}
-			// if
-			// let trueMaxD
-			// let trueMaxDEnd
-			// this.memoryInputsStart = []
-			// this.memoryInputsStart.push(this.$inputD.value)
-			// this.memoryInputsStart.push(this.$inputM.value)
-			// this.memoryInputsStart.push(this.$inputY.value)
+	
 			if (this.$inputM.value !== '' && this.$inputY.value !== '') {
 				let onlineInputsStart = `${this.$inputM.value}${this.$inputY.value}`
 				
@@ -191,31 +198,26 @@ export class InputsDbd {
 					this.memoryInputsEnd = [this.$inputEndM.value, this.$inputEndY.value]
 					this.trueMaxDEnd = calendarGen(yEnd, mEnd - 1)		
 					console.log('this.memoryInputsEnd', this.memoryInputsEnd, this.trueMaxDEnd);
-					
 				}
 			
-			
-				
-				if (Number(this.$inputD.value) > this.trueMaxD ) {
-					this.$inputD.style.color = 'red';
-					setTimeout(() => {
-						this.$inputD.value = this.trueMaxD
-						this.$inputD.style.color = 'green'
-						setTimeout(() => {
-							this.$inputD.style.color = 'black'
-						}, 1000);
-					}, 1000);
+			if (Number(this.$inputD.value) > this.trueMaxD ) {
+				this.$inputD.style.color = 'red';
+				setTimeout(() => {
+					this.$inputD.value = this.trueMaxD
+					this.$inputD.style.color = 'green'
 					localStorage.setItem('inputD', this.trueMaxD)
-					console.log('autoRenameDayInYear StartDays', this.trueMaxD);
-				}
-				
-				if (Number(this.$inputEndD.value) >= this.trueMaxDEnd) {
-					this.$inputEndD.value = this.trueMaxDEnd
-					localStorage.setItem('inputEndD', this.$inputEndD.value)
-					console.log('autoRenameDayInYear EndDays');
-				}
+					setTimeout(() => {
+						this.$inputD.style.color = 'black'
+					}, 1000);
+				}, 200);
+				console.log('autoRenameDayInYear StartDays', this.trueMaxD);
+			}
 			
-
+			if (Number(this.$inputEndD.value) >= this.trueMaxDEnd) {
+				this.$inputEndD.value = this.trueMaxDEnd
+				localStorage.setItem('inputEndD', this.$inputEndD.value)
+				console.log('autoRenameDayInYear EndDays');
+			}
 
 		}
 	}
@@ -245,8 +247,6 @@ export class InputsDbd {
 	}
 
 	ifRenderResultDbd() {
-		
-		// const resultDbd = document.querySelector('.dbd-table');
 		const resultDbd = document.querySelector('.result-render-dbd');
 		if (resultDbd) {
 		this.resultDbdVisible = true;
@@ -258,28 +258,6 @@ export class InputsDbd {
 		
 	}
 
-	// showSubmitLoadingAnimation(dateStart, dateEndError) { 
-	// 	console.log('dateStart dateStart', dateStart);
-	// 	const resultDbd = document.querySelector('.result-render-dbd');
-	// 	if (dateStart !== false) {
-	// 		console.error('if (!resultDbd) {', resultDbd);
-	// 		this.$dbdTextRender.insertAdjacentHTML('beforeend', `
-	// 			<h1 class="show-submit-load">Load</h1>
-	// 		`)
-	// 	} else if (resultDbd) {
-	// 		// const showSubmitLoad = document.querySelector('.show-submit-load');
-	// 		// showSubmitLoad.remove()
-	// 	}
-	// }
-
-	// removeSubmitLoadingAnimation() {
-	// 	const showSubmitLoad = document.querySelector('.show-submit-load');
-	// 	if (showSubmitLoad) {
-	// 		showSubmitLoad.remove()
-	// 	}
-	// }
-	
-
 	colorErrorInputOverDate($el, rplc, colorEror, color, count) {
 		$el.style.color = colorEror
 			setTimeout(()=> {
@@ -290,11 +268,11 @@ export class InputsDbd {
 				setTimeout(() => {
 					$el.style.color = color
 				}, 1000);
-			}, 1000)
+			}, 200)
 	}
 
 	inputsFocusKey(eventTargetInput, count) {
-		this.countBackspace = 0
+		// this.countBackspace = 0
 		let countBackspacePositionZero = 0
 		let countKeyLeft = 0
 		let countKeyRight = 0
@@ -317,19 +295,7 @@ export class InputsDbd {
 					|| count === 3 
 					|| count === 4 
 					) {
-						if (eventTargetInput.value === "0") {
-							eventTargetInput.value = eventTargetInput.value.replace(/\d+/, `01`)
-							
-						}
-						// eventTargetInput.value = eventTargetInput.value.replace(/^(\d)$/, '0$1')
 						changeFirstStr('0')
-					eventTargetInput.addEventListener('blur', (event) => {
-						console.log('eventTargetInput.addEventListenerblur');
-						// eventTargetInput.value = '0' + eventTargetInput.value
-						// eventTargetInput.value = eventTargetInput.value.replace(/^(\d)$/, '0$1')
-
-					})
-					
 				}
 				
 				if (count === 2 || count === 5) {
@@ -374,28 +340,33 @@ export class InputsDbd {
 
 		});
 
-	
-
 		eventTargetInput.addEventListener('keyup', (e)=> {
-			if (e.key === 'Backspace') {
-					this.countBackspace += 1
-			}
+			// if (e.key === 'Backspace') {
+			// 	this.countBackspace += 1
+			// }
 			if (e.keyCode === 8 && e.target.selectionStart === 0) { //! Backspace key
 				countBackspacePositionZero += 1
-				this.countBackspace = 0
+				// this.countBackspace = 0
 				console.log('countBackspacePositionZero', countBackspacePositionZero);
 				if (count - 1 !== -1 && countBackspacePositionZero === 2) {
 					this.$el[count - 1].focus();
+					const lastSymbol = this.$el[count - 1].value.length
+					this.$el[count - 1].setSelectionRange(lastSymbol, lastSymbol)
 					countBackspacePositionZero = 0
 				}
 				
-			} //======================================================================
+			} else {
+				countBackspacePositionZero = 0
+				// this.countBackspace = 0
+			}
+			
+			//======================================================================
 
 			if (e.keyCode === 13) { //! Enter key
 				e.target.blur()
 				window.addEventListener('unload', function() {
 					e.target.blur();
-				 })
+				})
 				this.$btnSubmit.click()
 			}
 			
@@ -403,36 +374,41 @@ export class InputsDbd {
 				console.log('cursorPosition <- key', cursorPosition);
 				countKeyLeft += 1
 				countKeyRight = 0
-				console.log('countKeyLeft', countKeyLeft);
+				// console.log('countKeyLeft', countKeyLeft);
 				if (count - 1 !== -1 && countKeyLeft === 2) {
 					countKeyLeft = 0
 					this.$el[count - 1].focus();
 					const lastSymbol = this.$el[count - 1].value.length
 					this.$el[count - 1].setSelectionRange(lastSymbol, lastSymbol)
 				}
-			}
+				console.log('countKeyLeft', countKeyLeft);
+				
+			} else {
+				countKeyLeft = 0
+			} 
+
 			if (e.keyCode === 39 && e.target.selectionStart === e.target.value.length) { //! -> key
 				console.log('cursorPosition -> key', e.target.selectionStart);
 				console.log('e.target.value.length', e.target.value.length);
 				countKeyRight += 1
 				countKeyLeft = 0
-				console.log('countKeyLeft', countKeyRight);
 				if (count - 1 !== 4 && countKeyRight === 2) {
 					countKeyRight = 0
 					this.$el[count + 1].focus();
 					this.$el[count + 1].setSelectionRange(0, 0)
 				}
+				console.log('countKeyRight', countKeyRight);
+			} else {
+				countKeyRight = 0
 			}
 		})
 	}
 
-
-
 	escapeFromFocusInputUnload() {
 		this.$el.forEach(elem => {
-			window.addEventListener('unload', function() {
-			elem.blur();
-		 })
+			window.addEventListener('unload', ()=> {
+				elem.blur();
+			})
 		});
 	}
 
@@ -442,18 +418,22 @@ export class InputsDbd {
 		})
 	}
 
-	cursorPositionClick(eventTarget, count) {
-		let cursorSelection = eventTarget.value.selectionStart 
-		if (cursorSelection = 0) {
-			// eventTarget
-			if (eventTarget.keyCode === 8) { //! Backspace key
-				if (count - 1 !== -1 && countBackspace === 2) {
-					this.$el[count - 1].focus();
-				}
-			}
-		}
-		console.log('cursorPositionClick event.target', eventTarget.selectionStart);
-	}
+	// cursorPositionClick(eventTarget, count) {
+	// 	if (eventTarget.selectionStart === 0) {
+	// 		// eventTarget
+	// 		if (eventTarget.keyCode === 8) { //! Backspace key
+	// 			if (count - 1 !== -1 && countBackspace === 2) {
+	// 				// this.$el[count - 1].selectionStart = this.$el[count - 1].length
+	// 				this.$el[count - 1].focus();
+				
+	// 				const lastSymbol = this.$el[count - 1].value.length
+	// 				this.$el[count - 1].setSelectionRange(lastSymbol, lastSymbol)
+	// 				// this.$el[count].selectionStart = 0
+	// 			}
+	// 		}
+	// 	}
+	// 	console.log('cursorPositionClick event.target', eventTarget.selectionStart);
+	// }
 	
 
 	validEventTargetClick(eventTargetClick, count) {

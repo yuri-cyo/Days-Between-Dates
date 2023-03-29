@@ -185,17 +185,19 @@
             }));
             this.resultDbdVisible = false;
         }
-        validEventTargetInput(eventTargetInput, count) {
-            const eValue = eventTargetInput.value;
-            if (3 === count || 4 === count || 5 === count) if ("" !== eValue) {
+        changeplaceholderContent(eventTargetInput, count) {
+            if (count >= 3 && count <= 6) if ("" !== eventTargetInput.value || "" !== this.$inputEndD.value || "" !== this.$inputEndM.value || "" !== this.$inputEndY.value) {
                 this.$inputEndD.placeholder = "дд";
                 this.$inputEndM.placeholder = "мм";
                 this.$inputEndY.placeholder = "рррр";
-            } else {
+            } else if ("" === this.$inputEndD.value && "" === this.$inputEndM.value && "" === this.$inputEndY.value) {
                 this.$inputEndD.placeholder = this.currentEndD;
                 this.$inputEndM.placeholder = this.currentEndM;
                 this.$inputEndY.placeholder = this.currentEndY;
             }
+        }
+        validEventTargetInput(eventTargetInput, count) {
+            const eValue = eventTargetInput.value;
             if (2 === count || 5 === count) {
                 console.log(count);
                 eventTargetInput.value = eValue.replace(/(.{4})./, "$1").replace(/[^\d]/g, "");
@@ -203,7 +205,7 @@
             } else {
                 eventTargetInput.value = eValue.replace(/(.{2})./, "$1").replace(/[^\d]/g, "");
                 if (this.$el[count].value.length >= 2) this.$el[count + 1].focus();
-                if (0 === count || 3 === count && true === this.isLoad) {
+                if (0 === count || 3 === count && true === this.isLoad && "" === this.$inputM.value && "" === this.$inputY.value) {
                     console.error("(count === 0 || count === 3)");
                     if (Number(eventTargetInput.value) > 31) this.colorErrorInputOverDate(eventTargetInput, "31", "red", "black", count);
                     if ("00" === eventTargetInput.value) this.colorErrorInputOverDate(eventTargetInput, "01", "red", "black", count);
@@ -248,11 +250,11 @@
                     setTimeout((() => {
                         this.$inputD.value = this.trueMaxD;
                         this.$inputD.style.color = "green";
+                        localStorage.setItem("inputD", this.trueMaxD);
                         setTimeout((() => {
                             this.$inputD.style.color = "black";
                         }), 1e3);
-                    }), 1e3);
-                    localStorage.setItem("inputD", this.trueMaxD);
+                    }), 200);
                     console.log("autoRenameDayInYear StartDays", this.trueMaxD);
                 }
                 if (Number(this.$inputEndD.value) >= this.trueMaxDEnd) {
@@ -308,10 +310,9 @@
                 setTimeout((() => {
                     $el.style.color = color;
                 }), 1e3);
-            }), 1e3);
+            }), 200);
         }
         inputsFocusKey(eventTargetInput, count) {
-            this.countBackspace = 0;
             let countBackspacePositionZero = 0;
             let countKeyLeft = 0;
             let countKeyRight = 0;
@@ -323,13 +324,7 @@
                 const changeFirstStr = str => {
                     eventTargetInput.value = eventTargetInput.value.replace(/^(\d)$/, `${str}$1`);
                 };
-                if (1 === eventTargetInput.value.length && 0 === count || 1 === count || 3 === count || 4 === count) {
-                    if ("0" === eventTargetInput.value) eventTargetInput.value = eventTargetInput.value.replace(/\d+/, `01`);
-                    changeFirstStr("0");
-                    eventTargetInput.addEventListener("blur", (event => {
-                        console.log("eventTargetInput.addEventListenerblur");
-                    }));
-                }
+                if (1 === eventTargetInput.value.length && 0 === count || 1 === count || 3 === count || 4 === count) changeFirstStr("0");
                 if (2 === count || 5 === count) {
                     if (Number(eventTargetInput.value) >= 10 && Number(eventTargetInput.value) <= 29 && 2 === eventTargetInput.value.length) eventTargetInput.value = eventTargetInput.value.replace(/^/, `20`);
                     if (Number(eventTargetInput.value) >= 30 && Number(eventTargetInput.value) <= 99 && 2 === eventTargetInput.value.length) eventTargetInput.value = eventTargetInput.value.replace(/^/, `19`);
@@ -363,17 +358,17 @@
                 console.log("lastCursorPosition", lastCursorPosition);
             }));
             eventTargetInput.addEventListener("keyup", (e => {
-                if ("Backspace" === e.key) this.countBackspace += 1;
                 if (8 === e.keyCode && 0 === e.target.selectionStart) {
                     //! Backspace key
                     countBackspacePositionZero += 1;
-                    this.countBackspace = 0;
                     console.log("countBackspacePositionZero", countBackspacePositionZero);
                     if (count - 1 !== -1 && 2 === countBackspacePositionZero) {
                         this.$el[count - 1].focus();
+                        const lastSymbol = this.$el[count - 1].value.length;
+                        this.$el[count - 1].setSelectionRange(lastSymbol, lastSymbol);
                         countBackspacePositionZero = 0;
                     }
-                }
+                } else countBackspacePositionZero = 0;
                 if (13 === e.keyCode) {
                     //! Enter key
                     e.target.blur();
@@ -387,44 +382,38 @@
                     console.log("cursorPosition <- key", cursorPosition);
                     countKeyLeft += 1;
                     countKeyRight = 0;
-                    console.log("countKeyLeft", countKeyLeft);
                     if (count - 1 !== -1 && 2 === countKeyLeft) {
                         countKeyLeft = 0;
                         this.$el[count - 1].focus();
                         const lastSymbol = this.$el[count - 1].value.length;
                         this.$el[count - 1].setSelectionRange(lastSymbol, lastSymbol);
                     }
-                }
+                    console.log("countKeyLeft", countKeyLeft);
+                } else countKeyLeft = 0;
                 if (39 === e.keyCode && e.target.selectionStart === e.target.value.length) {
                     //! -> key
                     console.log("cursorPosition -> key", e.target.selectionStart);
                     console.log("e.target.value.length", e.target.value.length);
                     countKeyRight += 1;
                     countKeyLeft = 0;
-                    console.log("countKeyLeft", countKeyRight);
                     if (count - 1 !== 4 && 2 === countKeyRight) {
                         countKeyRight = 0;
                         this.$el[count + 1].focus();
                         this.$el[count + 1].setSelectionRange(0, 0);
                     }
-                }
+                    console.log("countKeyRight", countKeyRight);
+                } else countKeyRight = 0;
             }));
         }
         escapeFromFocusInputUnload() {
             this.$el.forEach((elem => {
-                window.addEventListener("unload", (function() {
+                window.addEventListener("unload", (() => {
                     elem.blur();
                 }));
             }));
         }
         eTargetClick() {
             document.addEventListener("click", (event => event.target));
-        }
-        cursorPositionClick(eventTarget, count) {
-            let cursorSelection = eventTarget.value.selectionStart;
-            if (cursorSelection = 0) if (8 === eventTarget.keyCode) //! Backspace key
-            if (count - 1 !== -1 && 2 === countBackspace) this.$el[count - 1].focus();
-            console.log("cursorPositionClick event.target", eventTarget.selectionStart);
         }
         validEventTargetClick(eventTargetClick, count) {
             const value = eventTargetClick.value;
@@ -623,24 +612,26 @@
     inputsDbd.runLocalStorage();
     inputsDbd.eventBtns();
     inputsDbd.isloadPage();
-    inputsDbd.autoRenameDayInYear();
     for (let count = 0; count < inputsDbd.$el.length; count++) {
         let iInputs = inputsDbd.$el[count];
         iInputs.addEventListener("focus", (event => {
             //! event FOCUS iInputs!!!==================
             inputsDbd.inputsFocusKey(event.target, count);
-            inputsDbd.setPlaceholder(event.target, count);
             inputsDbd.autoRenameDayInYear();
+            inputsDbd.changeplaceholderContent(event.target, count);
+            inputsDbd.setPlaceholder(event.target, count);
         }));
         iInputs.addEventListener("input", (event => {
             //! event INPUT iInputs!!!=================
             inputsDbd.validEventTargetInput(event.target, count);
             inputsDbd.autoRenameDayInYear();
+            inputsDbd.changeplaceholderContent(event.target, count);
         }));
         window.addEventListener("load", (() => {
             //! event LOAD iInputs!!!=================
-            inputsDbd.validEventTargetInput(iInputs, count);
             inputsDbd.autoRenameDayInYear();
+            inputsDbd.validEventTargetInput(iInputs, count);
+            inputsDbd.changeplaceholderContent(iInputs, count);
         }));
     }
     inputsDbd.setChekbox();

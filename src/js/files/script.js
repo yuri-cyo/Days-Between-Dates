@@ -15,7 +15,7 @@ const inputsDbd = new InputsDbd('.main__input');
 inputsDbd.runLocalStorage()
 inputsDbd.eventBtns()
 inputsDbd.isloadPage()
-inputsDbd.autoRenameDayInYear()
+// inputsDbd.autoRenameDayInYear()
 // inputsDbd.eTargetClick()
 
 for (let count = 0; count < inputsDbd.$el.length; count++) {
@@ -23,17 +23,21 @@ for (let count = 0; count < inputsDbd.$el.length; count++) {
 
 	iInputs.addEventListener('focus', (event) => { //! event FOCUS iInputs!!!==================
 		inputsDbd.inputsFocusKey(event.target, count)
-		inputsDbd.setPlaceholder(event.target, count)
 		inputsDbd.autoRenameDayInYear()
+		inputsDbd.changeplaceholderContent(event.target, count)
+		inputsDbd.setPlaceholder(event.target, count)
+		// inputsDbd.cursorPositionClick(event.target, count)
 
 	})
 	iInputs.addEventListener('input', (event) => { //! event INPUT iInputs!!!=================
 		inputsDbd.validEventTargetInput(event.target, count)
 		inputsDbd.autoRenameDayInYear()
+		inputsDbd.changeplaceholderContent(event.target, count)
 	})
 	window.addEventListener('load', ()=> { //! event LOAD iInputs!!!=================
-		inputsDbd.validEventTargetInput(iInputs, count)
 		inputsDbd.autoRenameDayInYear()
+		inputsDbd.validEventTargetInput(iInputs, count)
+		inputsDbd.changeplaceholderContent(iInputs, count)
 	})
 }
 

@@ -4,6 +4,9 @@
 	"title":"Главная"
 	})
 	<body>
+		<div class="img-fone">
+			<!-- background img -->
+		</div>
 		<div class="wrapper">
 			@@include('html/_header.htm',{})
 			<main>
@@ -22,7 +25,8 @@
 										<div class="main__set-date">
 											<input 
 												class="main__input main__input-date-start" 
-												type="text" 
+												type="text"
+												pattern="[0-9]*" 
 												id="dateStartD" 
 												placeholder="дд" 
 												autocomplete="off"
@@ -34,7 +38,8 @@
 												class="main__date-split">.</span>
 											<input 
 												class="main__input main__input-date-start" 
-												type="text" 
+												type="text"
+												pattern="[0-9]*"  
 												id="dateStartM" 
 												placeholder="мм" 
 												autocomplete="off"
@@ -44,7 +49,8 @@
 											<span class="main__date-split">.</span>
 											<input 
 												class="main__input main__input-date-start-year main__input-date-start " 
-												type="text" 
+												type="text"
+												pattern="[0-9]*"  
 												id="dateStartY" 
 												placeholder="рррр" 
 												autocomplete="off"
@@ -59,7 +65,8 @@
 											<div class="main__set-date">
 												<input 
 													class="main__input main__input-date-end" 
-													type="text" 
+													type="text"
+													pattern="[0-9]*"  
 													id="dateEndD" 
 													placeholder="дд" 
 													autocomplete="off" 
@@ -71,6 +78,7 @@
 												<input 
 													class="main__input main__input-date-end" 
 													type="text" 
+													pattern="[0-9]*" 
 													id="dateEndM" 
 													placeholder="мм" 
 													autocomplete="off"
@@ -82,6 +90,7 @@
 												<input 
 													class="main__input main__input-date-end-year main__input-date-end " 
 													type="text" 
+													pattern="[0-9]*" 
 													id="dateEndY" 
 													placeholder="рррр" 
 													autocomplete="off"

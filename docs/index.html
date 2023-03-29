@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20230327203335">
+	<link rel="stylesheet" href="css/style.min.css?_v=20230329165636">
 	<!-- <link rel="shortcut icon" href=""> -->
 	<link rel="icon shortcut" type="image/svg+xml" href="img/favicon.svg">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
@@ -14,6 +14,9 @@
 </head>
 
 <body>
+	<div class="img-fone">
+		<!-- background img -->
+	</div>
 	<div class="wrapper">
 		<header class="header">
 
@@ -32,22 +35,22 @@
 							<div class="main__wrapper-input">
 								<label for="dateStart">Початкова дата</label>
 								<div class="main__set-date">
-									<input class="main__input main__input-date-start" type="text" id="dateStartD" placeholder="дд" autocomplete="off" tabindex="1" maxlength="2">
+									<input class="main__input main__input-date-start" type="text" pattern="[0-9]*" id="dateStartD" placeholder="дд" autocomplete="off" tabindex="1" maxlength="2">
 									<span class="main__date-split">.</span>
-									<input class="main__input main__input-date-start" type="text" id="dateStartM" placeholder="мм" autocomplete="off" tabindex="2" maxlength="2">
+									<input class="main__input main__input-date-start" type="text" pattern="[0-9]*" id="dateStartM" placeholder="мм" autocomplete="off" tabindex="2" maxlength="2">
 									<span class="main__date-split">.</span>
-									<input class="main__input main__input-date-start-year main__input-date-start " type="text" id="dateStartY" placeholder="рррр" autocomplete="off" tabindex="3" maxlength="4">
+									<input class="main__input main__input-date-start-year main__input-date-start " type="text" pattern="[0-9]*" id="dateStartY" placeholder="рррр" autocomplete="off" tabindex="3" maxlength="4">
 								</div>
 								<button class="btn main__btn-clear btn-ripple" data-btn="clear-start" data-ripple-clear="once" tabindex="-1">Очистити</button>
 							</div>
 							<div class="main__wrapper-input">
 								<label for="dateStart">Кінцева дата</label>
 								<div class="main__set-date">
-									<input class="main__input main__input-date-end" type="text" id="dateEndD" placeholder="дд" autocomplete="off" tabindex="4" typevriter maxlength="2">
+									<input class="main__input main__input-date-end" type="text" pattern="[0-9]*" id="dateEndD" placeholder="дд" autocomplete="off" tabindex="4" typevriter maxlength="2">
 									<span class="main__date-split">.</span>
-									<input class="main__input main__input-date-end" type="text" id="dateEndM" placeholder="мм" autocomplete="off" tabindex="5" typevriter maxlength="2">
+									<input class="main__input main__input-date-end" type="text" pattern="[0-9]*" id="dateEndM" placeholder="мм" autocomplete="off" tabindex="5" typevriter maxlength="2">
 									<span class="main__date-split">.</span>
-									<input class="main__input main__input-date-end-year main__input-date-end " type="text" id="dateEndY" placeholder="рррр" autocomplete="off" tabindex="6" typevriter maxlength="4">
+									<input class="main__input main__input-date-end-year main__input-date-end " type="text" pattern="[0-9]*" id="dateEndY" placeholder="рррр" autocomplete="off" tabindex="6" typevriter maxlength="4">
 								</div>
 								<button class="btn main__btn-clear btn-ripple" data-btn="clear-end" data-ripple-clear="once" tabindex="-1">Очистити</button>
 							</div>
@@ -143,8 +146,8 @@
 		</div>
 	</div>
 </div> -->
-	<script src="js/app.min.js?_v=20230327203335"></script>
-	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js?_v=20230327203335"></script>
+	<script src="js/app.min.js?_v=20230329165636"></script>
+	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js?_v=20230329165636"></script>
 </body>
 <!-- <div class="parent">
 		parent
