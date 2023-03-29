@@ -95,14 +95,13 @@ main {
 
 	&__wrapper-inputs {
 		display: flex;
-		justify-content: space-evenly;
-		width: 100%;
+		// justify-content: space-evenly;
 		
 		// align-items: center;
 		// gap: rem(100);
 		column-gap: rem(20);
 		@include adaptiveValue("row-gap", 20, 0);
-		// @include adaptiveValue("column-gap", 200, 0);
+		@include adaptiveValue("column-gap", 100, 20);
 		@media (max-width:$mobile){
 			flex-direction: column;
 		}
@@ -216,6 +215,7 @@ main {
 	&__btn-clear {
 		background-color: $colorClearBtn;
 		font-size: rem(18);
+		
 		&:hover {
 			background-color: $colorHoverClearBtn;
 		}
@@ -223,6 +223,7 @@ main {
 
 	&__btn-submit {
 		outline: none;
+		@include adaptiveValue("font-size", 28, 24);
 		&:focus-visible {
 			outline: 2px solid rgb(255, 254, 254);
 			transition: all 0s ease 0s;

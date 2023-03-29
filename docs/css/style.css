@@ -417,6 +417,7 @@ label {
           align-items: center;
   background-color: #865dac;
   color: #ffffff;
+  font-size: 2rem;
   -webkit-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
@@ -797,10 +798,6 @@ main {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  width: 100%;
   -webkit-column-gap: 1.25rem;
      -moz-column-gap: 1.25rem;
           column-gap: 1.25rem;
@@ -1236,10 +1233,6 @@ main {
     margin-bottom: 3.125rem;
   }
 
-  .btn {
-    font-size: 1.75rem;
-  }
-
   .result-render-dbd {
     padding: 1.25rem;
   }
@@ -1276,12 +1269,22 @@ main {
     row-gap: 1.25rem;
   }
 
+  .main__wrapper-inputs {
+    -webkit-column-gap: 6.25rem;
+       -moz-column-gap: 6.25rem;
+            column-gap: 6.25rem;
+  }
+
   .main__tittle {
     margin-bottom: 3.125rem;
   }
 
   .main__tittle {
     padding: 1.25rem;
+  }
+
+  .main__btn-submit {
+    font-size: 1.75rem;
   }
 
   .main__settings {
@@ -1533,10 +1536,6 @@ main {
     margin-bottom: 1.25rem;
   }
 
-  .btn {
-    font-size: 1.5rem;
-  }
-
   .result-render-dbd {
     padding: 0.625rem;
   }
@@ -1546,7 +1545,7 @@ main {
   }
 
   .dbd__table {
-    font-size: 1rem;
+    font-size: 1.125rem;
   }
 
   .dbd__error-result {
@@ -1573,12 +1572,22 @@ main {
     row-gap: 0.0000000625rem;
   }
 
+  .main__wrapper-inputs {
+    -webkit-column-gap: 1.25rem;
+       -moz-column-gap: 1.25rem;
+            column-gap: 1.25rem;
+  }
+
   .main__tittle {
     margin-bottom: 1.125rem;
   }
 
   .main__tittle {
     padding: 0.625rem;
+  }
+
+  .main__btn-submit {
+    font-size: 1.5rem;
   }
 
   .main__settings {
@@ -1691,18 +1700,6 @@ main {
     }
 }
 
-@supports (font-size: clamp( 1.5rem , 1.4306220096rem  +  0.3827751196vw , 1.75rem )) {
-    .btn {
-      font-size: clamp( 1.5rem , 1.4306220096rem  +  0.3827751196vw , 1.75rem );
-    }
-}
-
-@supports not (font-size: clamp( 1.5rem , 1.4306220096rem  +  0.3827751196vw , 1.75rem )) {
-    .btn {
-      font-size: calc(1.5rem + 0.25 * (100vw - 18.125rem) / 65.3125);
-    }
-}
-
 @supports (padding: clamp( 0.625rem , 0.4515550239rem  +  0.956937799vw , 1.25rem )) {
     .result-render-dbd {
       padding: clamp( 0.625rem , 0.4515550239rem  +  0.956937799vw , 1.25rem );
@@ -1727,15 +1724,15 @@ main {
     }
 }
 
-@supports (font-size: clamp( 1rem , 0.7571770335rem  +  1.3397129187vw , 1.875rem )) {
+@supports (font-size: clamp( 1.125rem , 0.9168660287rem  +  1.1483253589vw , 1.875rem )) {
     .dbd__table {
-      font-size: clamp( 1rem , 0.7571770335rem  +  1.3397129187vw , 1.875rem );
+      font-size: clamp( 1.125rem , 0.9168660287rem  +  1.1483253589vw , 1.875rem );
     }
 }
 
-@supports not (font-size: clamp( 1rem , 0.7571770335rem  +  1.3397129187vw , 1.875rem )) {
+@supports not (font-size: clamp( 1.125rem , 0.9168660287rem  +  1.1483253589vw , 1.875rem )) {
     .dbd__table {
-      font-size: calc(1rem + 0.875 * (100vw - 18.125rem) / 65.3125);
+      font-size: calc(1.125rem + 0.75 * (100vw - 18.125rem) / 65.3125);
     }
 }
 
@@ -1811,6 +1808,22 @@ main {
     }
 }
 
+@supports ((-moz-column-gap: clamp( 1.25rem , -0.1375598086rem  +  7.6555023923vw , 6.25rem )) or (column-gap: clamp( 1.25rem , -0.1375598086rem  +  7.6555023923vw , 6.25rem ))) {
+    .main__wrapper-inputs {
+      -webkit-column-gap: clamp( 1.25rem , -0.1375598086rem  +  7.6555023923vw , 6.25rem );
+         -moz-column-gap: clamp( 1.25rem , -0.1375598086rem  +  7.6555023923vw , 6.25rem );
+              column-gap: clamp( 1.25rem , -0.1375598086rem  +  7.6555023923vw , 6.25rem );
+    }
+}
+
+@supports not ((-moz-column-gap: clamp( 1.25rem , -0.1375598086rem  +  7.6555023923vw , 6.25rem )) or (column-gap: clamp( 1.25rem , -0.1375598086rem  +  7.6555023923vw , 6.25rem ))) {
+    .main__wrapper-inputs {
+      -webkit-column-gap: calc(1.25rem + 5 * (100vw - 18.125rem) / 65.3125);
+         -moz-column-gap: calc(1.25rem + 5 * (100vw - 18.125rem) / 65.3125);
+              column-gap: calc(1.25rem + 5 * (100vw - 18.125rem) / 65.3125);
+    }
+}
+
 @supports (margin-bottom: clamp( 1.125rem , 0.5699760766rem  +  3.0622009569vw , 3.125rem )) {
     .main__tittle {
       margin-bottom: clamp( 1.125rem , 0.5699760766rem  +  3.0622009569vw , 3.125rem );
@@ -1832,6 +1845,18 @@ main {
 @supports not (padding: clamp( 0.625rem , 0.4515550239rem  +  0.956937799vw , 1.25rem )) {
     .main__tittle {
       padding: calc(0.625rem + 0.625 * (100vw - 18.125rem) / 65.3125);
+    }
+}
+
+@supports (font-size: clamp( 1.5rem , 1.4306220096rem  +  0.3827751196vw , 1.75rem )) {
+    .main__btn-submit {
+      font-size: clamp( 1.5rem , 1.4306220096rem  +  0.3827751196vw , 1.75rem );
+    }
+}
+
+@supports not (font-size: clamp( 1.5rem , 1.4306220096rem  +  0.3827751196vw , 1.75rem )) {
+    .main__btn-submit {
+      font-size: calc(1.5rem + 0.25 * (100vw - 18.125rem) / 65.3125);
     }
 }
 
