@@ -79,7 +79,8 @@ input::-webkit-inner-spin-button {
 	// background: linear-gradient(45deg, rgba(140,72,145,1) 0%, rgba(68,62,138,1) 100%);
 	// box-shadow: $box-shadow-btn;
 	color: $mainTextColor;
-	font-size: 2rem;
+	// font-size: 2rem;
+	@include adaptiveValue("font-size", 28, 24);
 	transition: all 0.3s ease 0s;
 	&:hover {
 		background-color: $colorHoverBtn;

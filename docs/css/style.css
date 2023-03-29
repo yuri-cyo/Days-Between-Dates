@@ -417,7 +417,6 @@ label {
           align-items: center;
   background-color: #865dac;
   color: #ffffff;
-  font-size: 2rem;
   -webkit-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
@@ -798,15 +797,18 @@ main {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  row-gap: 1.25rem;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  width: 100%;
+  -webkit-column-gap: 1.25rem;
+     -moz-column-gap: 1.25rem;
+          column-gap: 1.25rem;
 }
 
 .main__tittle {
   padding-top: 0.625rem;
   padding-bottom: 0.625rem;
-  padding: 1.25rem;
   background: -o-linear-gradient(45deg, rgba(92, 92, 92, 0.591) 0%, rgba(106, 105, 115, 0.637) 50%, rgba(92, 92, 92, 0.601) 100%);
   background: linear-gradient(45deg, rgba(92, 92, 92, 0.591) 0%, rgba(106, 105, 115, 0.637) 50%, rgba(92, 92, 92, 0.601) 100%);
   border-radius: calc(3.125rem - 7.5px);
@@ -820,6 +822,10 @@ main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.main__tittle .logo {
+  margin-right: 0.4375rem;
 }
 
 .main__line {
@@ -935,7 +941,6 @@ main {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  gap: 3.125rem;
   padding-bottom: 3.125rem;
 }
 
@@ -1231,6 +1236,10 @@ main {
     margin-bottom: 3.125rem;
   }
 
+  .btn {
+    font-size: 1.75rem;
+  }
+
   .result-render-dbd {
     padding: 1.25rem;
   }
@@ -1264,13 +1273,19 @@ main {
   }
 
   .main__wrapper-inputs {
-    -webkit-column-gap: 6.25rem;
-       -moz-column-gap: 6.25rem;
-            column-gap: 6.25rem;
+    row-gap: 1.25rem;
   }
 
   .main__tittle {
     margin-bottom: 3.125rem;
+  }
+
+  .main__tittle {
+    padding: 1.25rem;
+  }
+
+  .main__settings {
+    padding-bottom: 3.125rem;
   }
 
   .spares__blok {
@@ -1518,6 +1533,10 @@ main {
     margin-bottom: 1.25rem;
   }
 
+  .btn {
+    font-size: 1.5rem;
+  }
+
   .result-render-dbd {
     padding: 0.625rem;
   }
@@ -1551,13 +1570,19 @@ main {
   }
 
   .main__wrapper-inputs {
-    -webkit-column-gap: 0.0000000625rem;
-       -moz-column-gap: 0.0000000625rem;
-            column-gap: 0.0000000625rem;
+    row-gap: 0.0000000625rem;
   }
 
   .main__tittle {
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.125rem;
+  }
+
+  .main__tittle {
+    padding: 0.625rem;
+  }
+
+  .main__settings {
+    padding-bottom: 1.25rem;
   }
 
   .spares__blok {
@@ -1666,6 +1691,18 @@ main {
     }
 }
 
+@supports (font-size: clamp( 1.5rem , 1.4306220096rem  +  0.3827751196vw , 1.75rem )) {
+    .btn {
+      font-size: clamp( 1.5rem , 1.4306220096rem  +  0.3827751196vw , 1.75rem );
+    }
+}
+
+@supports not (font-size: clamp( 1.5rem , 1.4306220096rem  +  0.3827751196vw , 1.75rem )) {
+    .btn {
+      font-size: calc(1.5rem + 0.25 * (100vw - 18.125rem) / 65.3125);
+    }
+}
+
 @supports (padding: clamp( 0.625rem , 0.4515550239rem  +  0.956937799vw , 1.25rem )) {
     .result-render-dbd {
       padding: clamp( 0.625rem , 0.4515550239rem  +  0.956937799vw , 1.25rem );
@@ -1762,31 +1799,51 @@ main {
     }
 }
 
-@supports ((-moz-column-gap: clamp( 0.0000000625rem , -1.7344496809rem  +  9.5693778947vw , 6.25rem )) or (column-gap: clamp( 0.0000000625rem , -1.7344496809rem  +  9.5693778947vw , 6.25rem ))) {
+@supports (row-gap: clamp( 0.0000000625rem , -0.3468898723rem  +  1.9138755024vw , 1.25rem )) {
     .main__wrapper-inputs {
-      -webkit-column-gap: clamp( 0.0000000625rem , -1.7344496809rem  +  9.5693778947vw , 6.25rem );
-         -moz-column-gap: clamp( 0.0000000625rem , -1.7344496809rem  +  9.5693778947vw , 6.25rem );
-              column-gap: clamp( 0.0000000625rem , -1.7344496809rem  +  9.5693778947vw , 6.25rem );
+      row-gap: clamp( 0.0000000625rem , -0.3468898723rem  +  1.9138755024vw , 1.25rem );
     }
 }
 
-@supports not ((-moz-column-gap: clamp( 0.0000000625rem , -1.7344496809rem  +  9.5693778947vw , 6.25rem )) or (column-gap: clamp( 0.0000000625rem , -1.7344496809rem  +  9.5693778947vw , 6.25rem ))) {
+@supports not (row-gap: clamp( 0.0000000625rem , -0.3468898723rem  +  1.9138755024vw , 1.25rem )) {
     .main__wrapper-inputs {
-      -webkit-column-gap: calc(0.0000000625rem + 6.2499999375 * (100vw - 18.125rem) / 65.3125);
-         -moz-column-gap: calc(0.0000000625rem + 6.2499999375 * (100vw - 18.125rem) / 65.3125);
-              column-gap: calc(0.0000000625rem + 6.2499999375 * (100vw - 18.125rem) / 65.3125);
+      row-gap: calc(0.0000000625rem + 1.2499999375 * (100vw - 18.125rem) / 65.3125);
     }
 }
 
-@supports (margin-bottom: clamp( 1.25rem , 0.7296650718rem  +  2.8708133971vw , 3.125rem )) {
+@supports (margin-bottom: clamp( 1.125rem , 0.5699760766rem  +  3.0622009569vw , 3.125rem )) {
     .main__tittle {
-      margin-bottom: clamp( 1.25rem , 0.7296650718rem  +  2.8708133971vw , 3.125rem );
+      margin-bottom: clamp( 1.125rem , 0.5699760766rem  +  3.0622009569vw , 3.125rem );
     }
 }
 
-@supports not (margin-bottom: clamp( 1.25rem , 0.7296650718rem  +  2.8708133971vw , 3.125rem )) {
+@supports not (margin-bottom: clamp( 1.125rem , 0.5699760766rem  +  3.0622009569vw , 3.125rem )) {
     .main__tittle {
-      margin-bottom: calc(1.25rem + 1.875 * (100vw - 18.125rem) / 65.3125);
+      margin-bottom: calc(1.125rem + 2 * (100vw - 18.125rem) / 65.3125);
+    }
+}
+
+@supports (padding: clamp( 0.625rem , 0.4515550239rem  +  0.956937799vw , 1.25rem )) {
+    .main__tittle {
+      padding: clamp( 0.625rem , 0.4515550239rem  +  0.956937799vw , 1.25rem );
+    }
+}
+
+@supports not (padding: clamp( 0.625rem , 0.4515550239rem  +  0.956937799vw , 1.25rem )) {
+    .main__tittle {
+      padding: calc(0.625rem + 0.625 * (100vw - 18.125rem) / 65.3125);
+    }
+}
+
+@supports (padding-bottom: clamp( 1.25rem , 0.7296650718rem  +  2.8708133971vw , 3.125rem )) {
+    .main__settings {
+      padding-bottom: clamp( 1.25rem , 0.7296650718rem  +  2.8708133971vw , 3.125rem );
+    }
+}
+
+@supports not (padding-bottom: clamp( 1.25rem , 0.7296650718rem  +  2.8708133971vw , 3.125rem )) {
+    .main__settings {
+      padding-bottom: calc(1.25rem + 1.875 * (100vw - 18.125rem) / 65.3125);
     }
 }
 

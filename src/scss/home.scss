@@ -95,12 +95,14 @@ main {
 
 	&__wrapper-inputs {
 		display: flex;
-		justify-content: space-around;
+		justify-content: space-evenly;
+		width: 100%;
 		
 		// align-items: center;
 		// gap: rem(100);
-		row-gap: rem(20);
-		@include adaptiveValue("column-gap", 100, 0);
+		column-gap: rem(20);
+		@include adaptiveValue("row-gap", 20, 0);
+		// @include adaptiveValue("column-gap", 200, 0);
 		@media (max-width:$mobile){
 			flex-direction: column;
 		}
@@ -112,11 +114,12 @@ main {
 		// font-weight: 900;
 		// letter-spacing: rem(2);
 		// margin-bottom: rem(50);
-		@include adaptiveValue("margin-bottom", 50, 20);
+		@include adaptiveValue("margin-bottom", 50, 18);
 		// color: $mainTextColor;
 		padding-top: rem(10);
 		padding-bottom: rem(10);
-		padding: rem(20);
+		// padding: rem(20);
+		@include adaptiveValue("padding", 20, 10);
 		// background: linear-gradient(90deg, rgb(90, 84, 171) 0%, rgb(163, 101, 163) 50%, rgb(90, 84, 171) 100%);
 		// background: radial-gradient(circle, rgba(24, 18, 32, 0.308) 0%, rgba(23, 10, 36, 0.308) 100%);
 		background: linear-gradient(
@@ -130,6 +133,11 @@ main {
 		display: flex;
 		justify-content:center;
 		align-items: center;
+
+		.logo {
+			margin-right: rem(7);
+		}
+
 		@media (max-width:$tablet){
 			border-radius: calc($border-radius-card-md2 - 7.5px);
 		}
@@ -239,8 +247,10 @@ main {
 
 	&__settings {
 		display: flex;
-		gap: rem(50);
+		// gap: rem(50);
+		// @include adaptiveValue("gap", 50, 20);
 		padding-bottom: rem(50);
+		@include adaptiveValue("padding-bottom", 50, 20);
 	}
 
 	&__settings-checkbox-label {
