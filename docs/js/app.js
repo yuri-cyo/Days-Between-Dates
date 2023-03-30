@@ -129,22 +129,30 @@
             }
         }
     }
+    let isLoad = false;
+    window.addEventListener("load", (() => {
+        isLoad = true;
+    }));
+    function contentDefault(selector) {
+        if (true === isLoad && null === document.querySelector(".content-here__wrapper")) {
+            const $el = document.querySelector(selector);
+            $el.innerHTML = "";
+            $el.insertAdjacentHTML("beforeend", `\n\t\t\t<div class="content-here__wrapper">\n\t\t\t\t<span class="_icon-content content-here__icon"></span>\n\t\t\t</div>\n\t\t\t`);
+        }
+    }
+    contentDefault(".days-between-dates");
     function resultRenderHtml(selector, options) {
         const $el = document.querySelector(selector);
-        console.warn("options.isError.errorMessage", options.isError);
-        $el.innerHTML = "";
         let currentOrSetEndDate = "";
-        console.error("resultRenderHtml options.starDate", options.endDate);
         if ("current" === options.endDate) currentOrSetEndDate = options.curentData; else currentOrSetEndDate = options.endDate;
         function incldFirstDayRender() {
             if (true === options.includingFirstDay) return `(включно)`; else return ``;
         }
-        console.log("incldFirstDayRender()", incldFirstDayRender());
         if (true === options.isError) {
-            $el.insertAdjacentHTML("beforeend", `\n\t\t<div class="result-render-dbd error-blinking-result unselectable">\n\t\t\t<h4 class='tittle tittle-error tittle-result'>Помилка!!!</h4>\n\t\t\t<div class="dbd__column-result">\n\t\t\t\t<p class="dbd__error-result">${options.errorMessage}</p>\n\t\t\t</div>\n\t\t</div>\n\t\t`);
-            $el.classList.add(options.errorClassName);
+            $el.innerHTML = "";
+            $el.insertAdjacentHTML("beforeend", `\n\t\t<div class="result-render-dbd error-blinking-result unselectable">\n\t\t\t<h4 class='tittle tittle-error tittle-result'>Помилка!!!</h4>\n\t\t\t<div class="dbd__column-result">\n\t\t\t\t<p class="error-result">${options.errorMessage}</p>\n\t\t\t</div>\n\t\t</div>\n\t\t`);
         } else if (false === options.isError) {
-            $el.classList.remove(options.errorClassName);
+            $el.innerHTML = "";
             $el.insertAdjacentHTML("beforeend", `\n\t\t\t<div class="result-render-dbd">\n\t\t\t\t<h4 class="tittle dbd__tittle tittle-result">Результат</h4>\n\t\t\t\t<div class="dbd__table">\n\t\t\t\t\t<div class="dbd__title-result-wrapper">\n\t\t\t\t\t\t\t<div class="dbd__column-title">\n\t\t\t\t\t\t\t\t<p>Період&nbsp;${incldFirstDayRender()}:</p>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class="dbd__column-result">\n\t\t\t\t\t\t\t\t<p>${options.starDate} - ${currentOrSetEndDate}</p>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class="dbd__title-result-wrapper">\n\t\t\t\t\t\t<div class="dbd__column-title">\n\t\t\t\t\t\t\t<p>Інтервал:</p>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class="dbd__column-result">\n\t\t\t\t\t\t\t<p>${options.years}р. ${options.months}міс. ${options.days}дн.</p>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class="dbd__title-result-wrapper">\n\t\t\t\t\t\t<div class="dbd__column-title">\n\t\t\t\t\t\t\t<p>Календарних&nbsp;днів:</p>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class="dbd__column-result">\n\t\t\t\t\t\t\t<p>${options.totalDays} дн.</p>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t`);
         }
     }
@@ -184,6 +192,7 @@
                 this.isLoad = true;
             }));
             this.resultDbdVisible = false;
+            this.scrollToElem();
         }
         changeplaceholderContent(eventTargetInput, count) {
             if (count >= 3 && count <= 6) if ("" !== eventTargetInput.value || "" !== this.$inputEndD.value || "" !== this.$inputEndM.value || "" !== this.$inputEndY.value) {
@@ -430,6 +439,7 @@
             window.addEventListener("load", (() => {
                 $elem.value = localStorage.getItem(key);
                 console.warn("setLoadLocalStorage($elem, key)=======================================================================", this.dateEnd());
+                contentDefault(".days-between-dates");
             }));
         }
         afterLocalStorageRun() {
@@ -485,31 +495,34 @@
         }
         eventBtns() {
             const $elBtns = document.querySelectorAll(".btn");
-            const $dbd = document.querySelector(".days-between-dates");
+            document.querySelector(".days-between-dates");
             const resultDbd = document.querySelector(".result-render-dbd");
             $elBtns.forEach((i => {
                 console.log(i);
                 i.addEventListener("click", (e => {
-                    if ("clear-start" === e.target.dataset.btn) {
+                    if (e.target.closest(`[data-btn="clear-start"]`)) {
                         this.$inputD.value = "";
                         this.$inputM.value = "";
                         this.$inputY.value = "";
+                        this.$inputD.focus();
                         console.log("this.$el.innerHTML", this.$el.innerHTML);
                         console.log("this.$el", this.$el);
                         this.localStorageClear("start");
                         this.ifRenderResultDbd();
-                    } else if ("clear-end" === e.target.dataset.btn) {
+                    } else if (e.target.closest(`[data-btn="clear-end"]`)) {
                         this.$inputEndD.value = "";
                         this.$inputEndM.value = "";
                         this.$inputEndY.value = "";
                         this.$inputEndD.placeholder = this.currentEndD;
                         this.$inputEndM.placeholder = this.currentEndM;
+                        this.$inputEndY.placeholder = this.currentEndY;
+                        this.$inputEndD.focus();
                         this.localStorageClear("end");
                         this.ifRenderResultDbd();
                     } else if (e.target.closest(`[data-btn="clear-result"]`)) {
                         console.log(e.target);
                         console.log(resultDbd);
-                        $dbd.innerHTML = "";
+                        contentDefault(".days-between-dates");
                         this.resultDbdVisible = false;
                         localStorage.setItem("resultDbdVisible", this.resultDbdVisible);
                     }
@@ -574,13 +587,12 @@
         isloadPage() {}
         errorInpust() {
             let countItems = 0;
-            const errorNameClass = "error-result-dbd";
             console.log("this.dateEnd() === error", this.dateEnd());
             this.$el.forEach((i => {
                 countItems += 1;
                 const errorInput = (mod, err) => {
                     i.classList.add("error-inputs");
-                    this.$dbdTextRender.innerHTML = "";
+                    contentDefault(".days-between-dates");
                     i.addEventListener("animationend", (() => {
                         i.classList.remove("error-inputs");
                     }));
@@ -589,7 +601,6 @@
                         errorClassName: "error-result-dbd",
                         errorMessage: "Кількість місяців у році не може перевищувати 12!"
                     });
-                    this.$dbdTextRender.classList.add(errorNameClass);
                 };
                 if (true === this.isLoad) {
                     if (2 === countItems && Number(i.value) > 12 || 5 === countItems && Number(i.value) > 12) {
@@ -607,6 +618,16 @@
                 }
             }));
         }
+        scrollToElem() {
+            this.$btnSubmit.addEventListener("click", (() => {
+                const sparkPlan = document.querySelector(".days-between-dates");
+                const sparkPlanBottom = sparkPlan.offsetTop - 30;
+                window.scrollTo({
+                    top: sparkPlanBottom,
+                    behavior: "smooth"
+                });
+            }));
+        }
     }
     const inputsDbd = new InputsDbd(".main__input");
     inputsDbd.runLocalStorage();
@@ -614,6 +635,7 @@
     inputsDbd.isloadPage();
     for (let count = 0; count < inputsDbd.$el.length; count++) {
         let iInputs = inputsDbd.$el[count];
+        iInputs.setAttribute("inputmode", "numeric");
         iInputs.addEventListener("focus", (event => {
             //! event FOCUS iInputs!!!==================
             inputsDbd.inputsFocusKey(event.target, count);
@@ -657,9 +679,7 @@
             });
             console.warn("inputsDbd.dateStart()", inputsDbd.dateStart());
             console.warn("inputsDbd.dateEnd()", inputsDbd.dateEnd());
-            const errorNameClass = "error-result-dbd";
- //!====
-                        if ("error" === inputsDbd.dateEnd()) dbd.$el.classList.add(errorNameClass); else dbd.$el.classList.remove(errorNameClass);
+            //!====
             if (false !== dbd.errorMessage()) resultRenderHtml(".days-between-dates", {
                 isError: false,
                 totalDays: dbd.totalDays(),

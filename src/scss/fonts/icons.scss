@@ -1,14 +1,14 @@
-@font-face {
-	font-family: 'icomoon';
-	src:  url('.fonts/icomoon.eot?mbjaa2');
-	src:  url('.fonts/icomoon.eot?mbjaa2#iefix') format('embedded-opentype'),
-	  url('.fonts/icomoon.ttf?mbjaa2') format('truetype'),
-	  url('.fonts/icomoon.woff?mbjaa2') format('woff'),
-	  url('.fonts/icomoon.svg?mbjaa2#icomoon') format('svg');
-	font-weight: normal;
-	font-style: normal;
-	font-display: block;
- }
+// @font-face {
+	// font-family: 'icomoon';
+	// src:  url('.fonts/icomoon.eot?mbjaa2');
+	// src:  url('.fonts/icomoon.eot?mbjaa2#iefix') format('embedded-opentype'),
+	//   url('.fonts/icomoon.ttf?mbjaa2') format('truetype'),
+	//   url('.fonts/icomoon.woff?mbjaa2') format('woff'),
+	//   url('.fonts/icomoon.svg?mbjaa2#icomoon') format('svg');
+	// font-weight: normal;
+	// font-style: normal;
+	// font-display: block;
+//  }
  
  [class^="_icon-"], 
  [class*=" _icon-"] 
@@ -32,10 +32,14 @@
  ._icon-telegram:before {
 	content: "\e906";
  }
- ._icon-767544:before {
+ ._icon-content:before {
+	content: "\e907";
+	// color: #000;
+ }
+ ._icon-link:before {
 	content: "\e902";
  }
- ._icon-person-circle-outline:before {
+ ._icon-person:before {
 	content: "\e903";
  }
  ._icon-logo-github:before {
@@ -50,4 +54,3 @@
  ._icon-calc:before {
 	content: "\e901";
  }
- 

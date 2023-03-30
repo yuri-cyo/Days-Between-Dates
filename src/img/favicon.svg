@@ -1,20 +1,25 @@
 <svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_8_17)">
 <rect width="512" height="512" rx="91" fill="url(#paint0_linear_8_17)"/>
-<path d="M163.875 180V319.261" stroke="white" stroke-width="32" stroke-linecap="round"/>
-<path d="M232.125 249.63L95.625 249.63" stroke="white" stroke-width="32" stroke-linecap="round"/>
-<path d="M416 250L280 250" stroke="white" stroke-width="32" stroke-linecap="round"/>
-<path d="M448 132L64 132" stroke="white" stroke-width="32"/>
-<path d="M324.25 416L187.75 416" stroke="white" stroke-width="32" stroke-linecap="round"/>
-<path d="M324.25 367.76L187.75 367.76" stroke="white" stroke-width="32" stroke-linecap="round"/>
-<path d="M366 78L366 17" stroke="white" stroke-width="32" stroke-linecap="round"/>
-<path d="M146 78L146 17" stroke="white" stroke-width="32" stroke-linecap="round"/>
+<path d="M181.888 437.416C163.979 437.416 146.192 435.085 128.528 430.424C110.864 425.517 95.8987 418.648 83.632 409.816L106.816 364.184C116.629 371.299 128.037 376.941 141.04 381.112C154.043 385.283 167.168 387.368 180.416 387.368C195.381 387.368 207.157 384.424 215.744 378.536C224.331 372.648 228.624 364.552 228.624 354.248C228.624 344.435 224.821 336.707 217.216 331.064C209.611 325.421 197.344 322.6 180.416 322.6H153.184V283.224L224.944 201.896L231.568 223.24H96.512V175.4H276.832V214.04L205.44 295.368L175.264 278.072H192.56C224.208 278.072 248.128 285.187 264.32 299.416C280.512 313.645 288.608 331.923 288.608 354.248C288.608 368.723 284.805 382.339 277.2 395.096C269.595 407.608 257.941 417.789 242.24 425.64C226.539 433.491 206.421 437.416 181.888 437.416ZM355.877 433V197.48L381.637 223.24H304.357V175.4H415.493V433H355.877Z" fill="url(#paint1_linear_8_17)"/>
+<path d="M159 208V303.901" stroke="white" stroke-width="32" stroke-linecap="round"/>
+<path d="M206 255.951L112 255.951" stroke="white" stroke-width="32" stroke-linecap="round"/>
+<path d="M400 255.951L306 255.951" stroke="white" stroke-width="32" stroke-linecap="round"/>
+<path d="M448 144L64 144" stroke="white" stroke-width="32"/>
+<path d="M303 400.24L209 400.24" stroke="white" stroke-width="32" stroke-linecap="round"/>
+<path d="M303 347L209 347" stroke="white" stroke-width="32" stroke-linecap="round"/>
+<path d="M366 80L366 16" stroke="white" stroke-width="32" stroke-linecap="round"/>
+<path d="M146 80L146 16" stroke="white" stroke-width="32" stroke-linecap="round"/>
 <rect x="48" y="48" width="416" height="416" rx="44" stroke="white" stroke-width="32"/>
 </g>
 <defs>
 <linearGradient id="paint0_linear_8_17" x1="256" y1="0" x2="256" y2="512" gradientUnits="userSpaceOnUse">
 <stop stop-color="#3C0C44"/>
 <stop offset="1" stop-color="#523A56"/>
+</linearGradient>
+<linearGradient id="paint1_linear_8_17" x1="96" y1="173.5" x2="414" y2="433" gradientUnits="userSpaceOnUse">
+<stop stop-color="white" stop-opacity="0.03"/>
+<stop offset="1" stop-color="white" stop-opacity="0.16"/>
 </linearGradient>
 <clipPath id="clip0_8_17">
 <rect width="512" height="512" fill="white"/>

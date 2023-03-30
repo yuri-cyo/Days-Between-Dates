@@ -7,11 +7,10 @@ import { DaysBetweenDates } from "./DaysBetweenDates.js";
 import { InputsDbd } from "./functionality.js";
 import { resultRenderHtml } from "./resultRender.js";
 
-
 //* ======================================================================
 
 const inputsDbd = new InputsDbd('.main__input');
-
+// contentDefault('.days-between-dates')
 inputsDbd.runLocalStorage()
 inputsDbd.eventBtns()
 inputsDbd.isloadPage()
@@ -19,7 +18,10 @@ inputsDbd.isloadPage()
 // inputsDbd.eTargetClick()
 
 for (let count = 0; count < inputsDbd.$el.length; count++) {
-	let iInputs = inputsDbd.$el[count]
+	let iInputs = inputsDbd.$el[count];
+
+	iInputs.setAttribute("inputmode", "numeric")
+
 
 	iInputs.addEventListener('focus', (event) => { //! event FOCUS iInputs!!!==================
 		inputsDbd.inputsFocusKey(event.target, count)
@@ -82,18 +84,18 @@ inputsDbd.$btnSubmit.addEventListener('click', (e) => { //! event CLICK btnSubmi
 			console.warn('inputsDbd.dateEnd()', inputsDbd.dateEnd());
 
 			const errorNameClass = 'error-result-dbd' //!====
-			if (inputsDbd.dateEnd() === 'error') {
+			// if (inputsDbd.dateEnd() === 'error') {
 
-				// inputsDbd.errorInpust()
-				dbd.$el.classList.add(errorNameClass)
-				// resultRenderHtml('.days-between-dates', {
-				// 	isError: true,
-				// 	errorClassName: 'error-result-dbd',
-				// 	errorMessage: 'Некоректна кінцева дата!!!'
-				// })
-			} else {
-				dbd.$el.classList.remove(errorNameClass)
-			}
+			// 	// inputsDbd.errorInpust()
+			// 	// dbd.$el.classList.add(errorNameClass)
+			// 	// resultRenderHtml('.days-between-dates', {
+			// 	// 	isError: true,
+			// 	// 	errorClassName: 'error-result-dbd',
+			// 	// 	errorMessage: 'Некоректна кінцева дата!!!'
+			// 	// })
+			// } else {
+			// 	dbd.$el.classList.remove(errorNameClass)
+			// }
 			if (dbd.errorMessage() !== false ) {
 				resultRenderHtml('.days-between-dates', {
 					isError: false,

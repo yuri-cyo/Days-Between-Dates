@@ -1,21 +1,8 @@
 import { resultRenderHtml } from "./resultRender.js";
 import { DaysBetweenDates } from "./DaysBetweenDates.js";
-
-
-// function calendarGen(year) {
-// 	const daysArray = [];
-
-// 	for (let i = 0; i < 12; i++) {
-// 		const daysInMonth = new Date(year, i + 1, 0).getDate();
-// 		daysArray.push(daysInMonth);
-// 	}
-// 	return daysArray;
-// }
-
-
+import { contentDefault } from "./resultRender.js";
 export class InputsDbd {
 	constructor(selector) {
-		// this.resultRenderHtml = resultRenderHtml()
 		this.$el = document.querySelectorAll(selector);
 
 		this.$dbdTextRender = document.querySelector('.days-between-dates')
@@ -58,10 +45,11 @@ export class InputsDbd {
 		this.isLoad = false 
 		window.addEventListener('load', ()=> {
 			this.isLoad = true
-			// console.error('isLoad = true', this.isLoad);
 		})
 
 		this.resultDbdVisible = false;
+
+		this.scrollToElem()
 	} 
 
 	changeplaceholderContent(eventTargetInput, count) {
@@ -81,11 +69,8 @@ export class InputsDbd {
 				this.$inputEndM.placeholder = this.currentEndM;
 				this.$inputEndY.placeholder = this.currentEndY;
 			}
-			
 		}
 	}
-
-	
 
 	validEventTargetInput(eventTargetInput, count) {
 		const eValue = eventTargetInput.value;
@@ -96,7 +81,6 @@ export class InputsDbd {
 			if (this.$el[count].value.length >= 4) {
 				if (count + 1 < 4) {
 					this.$el[count + 1].focus();
-
 				}
 			}
 		} else {
@@ -113,44 +97,25 @@ export class InputsDbd {
 				console.error('(count === 0 || count === 3)')
 				if (Number(eventTargetInput.value) > 31) {
 					this.colorErrorInputOverDate(eventTargetInput, '31', 'red', 'black', count)
-					
 				}
 				if (eventTargetInput.value === '00') {
 					this.colorErrorInputOverDate(eventTargetInput, '01', 'red', 'black', count)
-					
 				}
 				
 			}
 
 			if (count === 1 || count === 4) {
 				if (eventTargetInput.value === '00') {
-					// eventTargetInput.value = value.replace(/\d+/, '01')
 					this.colorErrorInputOverDate(eventTargetInput, '01', 'red', 'black', count)
 					
 				}
 				if (Number(eventTargetInput.value) > 12) {
-					// eventTargetInput.value = value.replace(/\d+/, '01')
 					this.colorErrorInputOverDate(eventTargetInput, '12', 'red', 'black', count)
 					
 				}
 			}
 			
 		}
-
-		// if (count === 1 && eventTargetInput.value.length === 2
-		// 	|| count === 2 && eventTargetInput.value.length === 4
-		// 	|| count === 4 && eventTargetInput.value.length === 2
-		// 	|| count === 5 && eventTargetInput.value.length === 4) {
-		// 	console.error('eventTargetInputMY.value.length === 2 and 4', eventTargetInput);
-			
-		// }
-
-		// if (count === 1 
-		// 		&& eventTargetInput.value.length === 2
-				
-		// 		&& eventTargetInput.value.length === 4) {
-		// 			console.err('eventTargetInputMY.value.length === 2 and 4');
-		// }
 	}
 
 	autoRenameDayInYear(mo, ye) {
@@ -289,50 +254,50 @@ export class InputsDbd {
 				eventTargetInput.value = eventTargetInput.value.replace(/^(\d)$/, `${str}$1`)
 			}
 
-				if (eventTargetInput.value.length === 1 
-					&& count === 0 
-					|| count === 1 
-					|| count === 3 
-					|| count === 4 
-					) {
-						changeFirstStr('0')
-				}
-				
-				if (count === 2 || count === 5) {
-					if (Number(eventTargetInput.value) >= 10 
-						&& Number(eventTargetInput.value) <= 29 
-						&& eventTargetInput.value.length === 2) {
-							eventTargetInput.value = eventTargetInput.value.replace(/^/, `20`)
-						}
-					if (Number(eventTargetInput.value) >= 30 
-						&& Number(eventTargetInput.value) <= 99 
-						&& eventTargetInput.value.length === 2) {
-							eventTargetInput.value = eventTargetInput.value.replace(/^/, `19`)
-						}
-
+			if (eventTargetInput.value.length === 1 
+				&& count === 0 
+				|| count === 1 
+				|| count === 3 
+				|| count === 4 
+				) {
+					changeFirstStr('0')
+			}
+			
+			if (count === 2 || count === 5) {
+				if (Number(eventTargetInput.value) >= 10 
+					&& Number(eventTargetInput.value) <= 29 
+					&& eventTargetInput.value.length === 2) {
+						eventTargetInput.value = eventTargetInput.value.replace(/^/, `20`)
 					}
-				
-				switch (count) {
-					case 0:
-						localStorage.setItem('inputD', e.target.value)
-						break;
-					case 1:
-						localStorage.setItem('inputM', e.target.value)
-						break;
-					case 2:
-						localStorage.setItem('inputY', e.target.value)
-						break;
+				if (Number(eventTargetInput.value) >= 30 
+					&& Number(eventTargetInput.value) <= 99 
+					&& eventTargetInput.value.length === 2) {
+						eventTargetInput.value = eventTargetInput.value.replace(/^/, `19`)
+					}
 
-					case 3:
-						localStorage.setItem('inputEndD', e.target.value)
-						break;
-					case 4:
-						localStorage.setItem('inputEndM', e.target.value)
-						break;
-					case 5:
-						localStorage.setItem('inputEndY', e.target.value)
-						break;
 				}
+			
+			switch (count) {
+				case 0:
+					localStorage.setItem('inputD', e.target.value)
+					break;
+				case 1:
+					localStorage.setItem('inputM', e.target.value)
+					break;
+				case 2:
+					localStorage.setItem('inputY', e.target.value)
+					break;
+
+				case 3:
+					localStorage.setItem('inputEndD', e.target.value)
+					break;
+				case 4:
+					localStorage.setItem('inputEndM', e.target.value)
+					break;
+				case 5:
+					localStorage.setItem('inputEndY', e.target.value)
+					break;
+			}
 
 			// Отримання позиції курсора під час втрати фокуса введенням
 			lastCursorPosition = eventTargetInput.selectionStart;
@@ -465,6 +430,8 @@ export class InputsDbd {
 			// 	this.$btnSubmit.click();
 			// }
 			// this.$el.innerHTML = ''
+			contentDefault('.days-between-dates')
+			
 			// if (this.dateStart() !== false) {
 			// 		this.$btnSubmit.click();
 			// 	}
@@ -494,11 +461,6 @@ export class InputsDbd {
 			}
 		});
 	}
-
-	// runsetItemLocalStorage(key, $el) {
-	// 	localStorage.setItem(key, $el)
-	// }
-
 
 	runLocalStorage() {
 		this.setLoadLocalStorage(this.$inputD, 'inputD')
@@ -540,7 +502,6 @@ export class InputsDbd {
 		}
 
 	dateStart() {
-		
 		if (this.$inputD.value !== ''
 		&& this.$inputM.value !== ''
 		&& this.$inputY.value !== ''
@@ -559,10 +520,6 @@ export class InputsDbd {
 	
 
 	dateEnd() {
-		// const renderDateEnd = ()=> {
-
-		// }
-
 		if (this.isLoad === true) {
 			if (this.$inputEndD.value !== ''
 			&& this.$inputEndM.value !== ''
@@ -583,12 +540,6 @@ export class InputsDbd {
 		}
 	}
 
-	// inputsIterration(mod) {
-	// 	this.$el.forEach((i)=> {
-	// 		i.mod
-	// 	})
-	// }
-
 	eventBtns() {
 		const $elBtns = document.querySelectorAll('.btn')
 		const $dbd = document.querySelector('.days-between-dates')
@@ -596,38 +547,37 @@ export class InputsDbd {
 		$elBtns.forEach((i)=> {
 			console.log(i);
 			i.addEventListener('click', (e)=> {
-				if (e.target.dataset.btn === 'clear-start') {
+				// if (e.target.dataset.btn === 'clear-start') {
+				if (e.target.closest(`[data-btn="clear-start"]`)) {
 					this.$inputD.value = '';
 					this.$inputM.value = '';
 					this.$inputY.value = '';
-					// $dbd.innerHTML = ''
+
+					this.$inputD.focus()
+
 					console.log('this.$el.innerHTML', this.$el.innerHTML);
 					console.log('this.$el', this.$el);
 					this.localStorageClear('start')
 					this.ifRenderResultDbd()
-				} else if (e.target.dataset.btn === 'clear-end') {
+				// } else if (e.target.dataset.btn === 'clear-end') {
+				} else if (e.target.closest(`[data-btn="clear-end"]`)) {
 					this.$inputEndD.value = '';
 					this.$inputEndM.value = '';
 					this.$inputEndY.value = '';
 
 					this.$inputEndD.placeholder = this.currentEndD;
 					this.$inputEndM.placeholder = this.currentEndM;
-					// this.$inputEndY.placeholder = this.currentEndY;
+					this.$inputEndY.placeholder = this.currentEndY;
 
-					// $dbd.innerHTML = ''
+					this.$inputEndD.focus()
+
 					this.localStorageClear('end')
 					this.ifRenderResultDbd()
 				} else if (e.target.closest(`[data-btn="clear-result"]`)) {
 						console.log(e.target);
 						console.log(resultDbd);
-						// if (resultDbd) {
-						// }
-						// $dbd.classList.add('resultFadeOut');
-						// // resultDbd.classList.add('resultFadeOut');
-						// $dbd.addEventListener('animationend', ()=> {
-						// 	$dbd.classList.remove('resultFadeOut')
-						// }) 
-						$dbd.innerHTML = '';
+						// $dbd.innerHTML = '';
+						contentDefault('.days-between-dates')
 						this.resultDbdVisible = false
 						localStorage.setItem('resultDbdVisible', this.resultDbdVisible)
 					}
@@ -744,9 +694,6 @@ export class InputsDbd {
 	errorInpust() {
 		let countItems = 0
 		const errorNameClass = 'error-result-dbd'
-
-		
-
 		
 		console.log('this.dateEnd() === error', this.dateEnd());
 		this.$el.forEach((i)=> {
@@ -755,7 +702,8 @@ export class InputsDbd {
 			const errorInput = (mod, err)=> {
 				i.classList.add('error-inputs')
 				// i.classList.add('tittle-error-dnone')npm run dev
-				this.$dbdTextRender.innerHTML = ''
+				// this.$dbdTextRender.innerHTML = ''
+				contentDefault('.days-between-dates')
 				// resultRenderHtml('.days-between-dates', {
 				// 	isError: true,
 				// 	errorClassName: 'error-result-dbd',
@@ -775,7 +723,7 @@ export class InputsDbd {
 						errorMessage: 'Кількість місяців у році не може перевищувати 12!'
 					})
 				} 
-				this.$dbdTextRender.classList.add(errorNameClass)
+				// this.$dbdTextRender.classList.add(errorNameClass)
 			}
 			
 			
@@ -808,11 +756,21 @@ export class InputsDbd {
 				}
 
 			}
-
-
-
-			// return 
 		}) 
+	}
+
+	scrollToElem() {
+		// const button = document.getElementById('myButton');
+		// console.log('sparkPlan', sparkPlan);
+		this.$btnSubmit.addEventListener('click', () => {
+			const sparkPlan = document.querySelector('.days-between-dates');
+		//   const sparkPlanBottom = sparkPlan.offsetTop - sparkPlan.offsetHeight;
+		  const sparkPlanBottom = sparkPlan.offsetTop - 30
+		  window.scrollTo({
+			 top: sparkPlanBottom,
+			 behavior: 'smooth'
+		  });
+		});
 	}
 
 
