@@ -11,6 +11,7 @@ import { resultRenderHtml } from "./resultRender.js";
 
 const inputsDbd = new InputsDbd('.main__input');
 // contentDefault('.days-between-dates')
+
 inputsDbd.runLocalStorage()
 inputsDbd.eventBtns()
 inputsDbd.isloadPage()
@@ -121,14 +122,15 @@ inputsDbd.$btnSubmit.addEventListener('click', (e) => { //! event CLICK btnSubmi
 		} else {
 			// inputsDbd.errorInpust()
 		}
-	
+		
 		//*=============================================================================================== 
-			
-	inputsDbd.ifRenderResultDbd()
-	// inputsDbd.removeSubmitLoadingAnimation()
-	// inputsDbd.showSubmitLoadingAnimation(inputsDbd.dateStart())
-})
-
+		inputsDbd.ifRenderResultDbd()
+		inputsDbd.scrollToElem()
+		// inputsDbd.removeSubmitLoadingAnimation()
+		// inputsDbd.showSubmitLoadingAnimation(inputsDbd.dateStart())
+	})
+	
+	 	
 inputsDbd.escapeFromFocusInputUnload()
 
 

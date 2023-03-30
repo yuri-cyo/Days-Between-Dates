@@ -85,7 +85,9 @@ input::-webkit-inner-spin-button {
 
 .error-result {
 	color: $colorClearBtn;
+	line-height: normal;
 	font-weight: 600;
+	@include adaptiveValue("font-size", 30, 20);
 }
 
 .result-render-dbd {

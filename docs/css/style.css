@@ -423,6 +423,7 @@ label {
 
 .error-result {
   color: #d24f41;
+  line-height: normal;
   font-weight: 600;
 }
 
@@ -1198,6 +1199,10 @@ main {
     margin-bottom: 3.125rem;
   }
 
+  .error-result {
+    font-size: 1.875rem;
+  }
+
   .result-render-dbd {
     padding: 1.25rem;
   }
@@ -1432,6 +1437,10 @@ main {
     margin-bottom: 1.25rem;
   }
 
+  .error-result {
+    font-size: 1.25rem;
+  }
+
   .result-render-dbd {
     padding: 0.625rem;
   }
@@ -1593,6 +1602,18 @@ main {
 @supports not (margin-bottom: clamp( 1.25rem , 0.7296650718rem  +  2.8708133971vw , 3.125rem )) {
     .subtittle {
       margin-bottom: calc(1.25rem + 1.875 * (100vw - 18.125rem) / 65.3125);
+    }
+}
+
+@supports (font-size: clamp( 1.25rem , 1.0765550239rem  +  0.956937799vw , 1.875rem )) {
+    .error-result {
+      font-size: clamp( 1.25rem , 1.0765550239rem  +  0.956937799vw , 1.875rem );
+    }
+}
+
+@supports not (font-size: clamp( 1.25rem , 1.0765550239rem  +  0.956937799vw , 1.875rem )) {
+    .error-result {
+      font-size: calc(1.25rem + 0.625 * (100vw - 18.125rem) / 65.3125);
     }
 }
 

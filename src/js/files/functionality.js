@@ -49,7 +49,7 @@ export class InputsDbd {
 
 		this.resultDbdVisible = false;
 
-		this.scrollToElem()
+		
 	} 
 
 	changeplaceholderContent(eventTargetInput, count) {
@@ -762,16 +762,14 @@ export class InputsDbd {
 	scrollToElem() {
 		// const button = document.getElementById('myButton');
 		// console.log('sparkPlan', sparkPlan);
-		this.$btnSubmit.addEventListener('click', () => {
-			const sparkPlan = document.querySelector('.days-between-dates');
-		//   const sparkPlanBottom = sparkPlan.offsetTop - sparkPlan.offsetHeight;
-		  const sparkPlanBottom = sparkPlan.offsetTop - 30
-		  window.scrollTo({
-			 top: sparkPlanBottom,
-			 behavior: 'smooth'
-		  });
-		});
+			this.$btnSubmit.addEventListener('click', () => {
+				const sparkPlan = document.querySelector('.result-render-dbd');
+			//   const sparkPlanBottom = sparkPlan.offsetTop - sparkPlan.offsetHeight;
+			  const sparkPlanBottom = sparkPlan.offsetTop - 30
+			  window.scrollTo({
+				 top: sparkPlanBottom,
+				 behavior: 'smooth'
+			  });
+			});
 	}
-
-
 }

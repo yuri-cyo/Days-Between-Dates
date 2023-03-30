@@ -3,6 +3,8 @@ window.addEventListener('load', ()=> {
 	isLoad = true
 })
 
+export let isResult = false;
+
 export function contentDefault(selector) {
 		if (isLoad === true && document.querySelector('.content-here__wrapper') === null) {
 			const $el = document.querySelector(selector)

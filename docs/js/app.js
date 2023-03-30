@@ -192,7 +192,6 @@
                 this.isLoad = true;
             }));
             this.resultDbdVisible = false;
-            this.scrollToElem();
         }
         changeplaceholderContent(eventTargetInput, count) {
             if (count >= 3 && count <= 6) if ("" !== eventTargetInput.value || "" !== this.$inputEndD.value || "" !== this.$inputEndM.value || "" !== this.$inputEndY.value) {
@@ -620,7 +619,7 @@
         }
         scrollToElem() {
             this.$btnSubmit.addEventListener("click", (() => {
-                const sparkPlan = document.querySelector(".days-between-dates");
+                const sparkPlan = document.querySelector(".result-render-dbd");
                 const sparkPlanBottom = sparkPlan.offsetTop - 30;
                 window.scrollTo({
                     top: sparkPlanBottom,
@@ -697,6 +696,7 @@
             });
         }
         inputsDbd.ifRenderResultDbd();
+        inputsDbd.scrollToElem();
     }));
     inputsDbd.escapeFromFocusInputUnload();
     //!====================================RIPPLE Button================================
