@@ -15,9 +15,7 @@ export function contentDefault(selector) {
 				<span class="_icon-content content-here__icon"></span>
 			</div>
 			`)
-
 		}
-
 }
 contentDefault('.days-between-dates')
 
@@ -25,8 +23,6 @@ export function resultRenderHtml(selector, options) {
 	
 	const $el = document.querySelector(selector)
 
-	// $el.innerHTML = ''
-	// contentDefault('.days-between-dates')
 	let currentOrSetEndDate = ''
 
 	if (options.endDate === 'current') {
@@ -44,7 +40,6 @@ export function resultRenderHtml(selector, options) {
 	}
 
 	if (options.isError === true 
-		// && document.querySelector('.result-render-dbd') === null
 		) {
 		$el.innerHTML = ''
 		$el.insertAdjacentHTML('beforeend', `
@@ -55,10 +50,8 @@ export function resultRenderHtml(selector, options) {
 			</div>
 		</div>
 		`)
-		// $el.classList.add(options.errorClassName)
 	} else if (options.isError === false) {
 		$el.innerHTML = ''
-		// $el.classList.remove(options.errorClassName)
 		$el.insertAdjacentHTML('beforeend', `
 			<div class="result-render-dbd">
 				<h4 class="tittle dbd__tittle tittle-result">Результат</h4>
@@ -90,9 +83,5 @@ export function resultRenderHtml(selector, options) {
 				</div>
 			</div>
 		`)
-
 	}
-
-	
-
 }

@@ -20,11 +20,8 @@
             this.endDate = option.endDate;
             this.includingFirstDay = option.includingFirstDay;
             this.includingLastDay = option.includingLastDay;
-            console.log("Сьогоднішня дата", this.liveD, this.liveM, this.liveY);
             if ("current" !== this.endDate) {
-                console.log("this.endDate", this.endDate);
                 const endDateArr = this.endDate.split(".");
-                console.log(endDateArr);
                 this.liveD = Number(endDateArr[0]);
                 this.liveM = Number(endDateArr[1]);
                 this.liveY = Number(endDateArr[2]);
@@ -33,9 +30,6 @@
                 this.liveM = (new Date).getMonth() + 1;
                 this.liveD = (new Date).getDate();
             }
-            console.log("this.liveD", this.liveD);
-            console.log("this.liveM", this.liveM);
-            console.log("this.liveY", this.liveY);
             this.arrMonths = [];
             this.clearArrM = [];
             this.arrMinusZeroM = [];
@@ -48,9 +42,6 @@
             this.editMStartEnd();
             this.editDStartEnd();
             this.countDMY();
-            console.log("this.startDateEnter(D)", this.startDateEnter("D"));
-            console.log("this.startDateEnter('M')", this.startDateEnter("M"));
-            console.log("this.startDateEnter('Y')", this.startDateEnter("Y"));
         }
         startDateEnter(mod) {
             if (10 === this.startDate.length) switch (mod) {
@@ -121,12 +112,7 @@
         errorMessage() {
             this.startDateStr = `${this.startDateEnter("D")}.${this.startDateEnter("M")}.${this.startDateEnter("Y")}`;
             this.endDateStr = `${this.liveD}.${this.liveM}.${this.liveY}`;
-            console.log("DaysBetweenDates this.startDate", this.startDateStr);
-            console.log("DaysBetweenDates this.endDate", this.endDateStr);
-            if (this.totalDays() <= 0 || isNaN(this.totalDays())) {
-                console.log("this.startDateStr === this.endDateStr TRUE");
-                return false;
-            }
+            if (this.totalDays() <= 0 || isNaN(this.totalDays())) return false;
         }
     }
     let isLoad = false;
@@ -177,12 +163,10 @@
             this.currentEndD = this.formatDateTwoNum((new Date).getDate());
             this.currentEndM = this.formatDateTwoNum((new Date).getMonth() + 1);
             this.currentEndY = (new Date).getFullYear();
-            console.error("this.formatDateTwoNum(new Date().getDate())", this.formatDateTwoNum(9));
             this.$inputEndD.placeholder = this.currentEndD;
             this.$inputEndM.placeholder = this.currentEndM;
             this.$inputEndY.placeholder = this.currentEndY;
             this.currentDate = `${this.currentEndD}.${this.currentEndM}.${this.currentEndY}`;
-            console.error("this.formatDateTwoNum(new Date().getDate())", this.currentDate);
             this.$checkedFirstDay = document.querySelector(`[data-input-setting="first-day"]`);
             this.$checkedLastDay = document.querySelector(`[data-input-setting="last-day"]`);
             this.includingFirstDay = false;
@@ -207,14 +191,12 @@
         validEventTargetInput(eventTargetInput, count) {
             const eValue = eventTargetInput.value;
             if (2 === count || 5 === count) {
-                console.log(count);
                 eventTargetInput.value = eValue.replace(/(.{4})./, "$1").replace(/[^\d]/g, "");
                 if (this.$el[count].value.length >= 4) if (count + 1 < 4) this.$el[count + 1].focus();
             } else {
                 eventTargetInput.value = eValue.replace(/(.{2})./, "$1").replace(/[^\d]/g, "");
                 if (this.$el[count].value.length >= 2) this.$el[count + 1].focus();
                 if (0 === count || 3 === count && true === this.isLoad && "" === this.$inputM.value && "" === this.$inputY.value) {
-                    console.error("(count === 0 || count === 3)");
                     if (Number(eventTargetInput.value) > 31) this.colorErrorInputOverDate(eventTargetInput, "31", "red", "black", count);
                     if ("00" === eventTargetInput.value) this.colorErrorInputOverDate(eventTargetInput, "01", "red", "black", count);
                 }
@@ -224,7 +206,7 @@
                 }
             }
         }
-        autoRenameDayInYear(mo, ye) {
+        autoRenameDayInYear() {
             if (2 === this.$inputD.value.length && 2 === this.$inputM.value.length && 4 === this.$inputY.value.length || 2 === this.$inputEndD.value.length && 2 === this.$inputEndM.value.length && 4 === this.$inputEndY.value.length) {
                 Number(this.$inputD.value);
                 const m = Number(this.$inputM.value);
@@ -245,13 +227,11 @@
                     if (onlineInputsStart !== this.memoryInputsStart) {
                         this.memoryInputsStart = `${this.$inputM.value}${this.$inputY.value}`;
                         this.trueMaxD = calendarGen(y, m - 1);
-                        console.log("this.memoryInputsStart", this.memoryInputsStart, this.trueMaxD);
                     }
                 } else "" === this.memoryInputsStart;
                 if (this.memoryInputsEnd[0] !== this.$inputEndM.value || this.memoryInputsEnd[1] !== this.$inputEndY.value) {
                     this.memoryInputsEnd = [ this.$inputEndM.value, this.$inputEndY.value ];
                     this.trueMaxDEnd = calendarGen(yEnd, mEnd - 1);
-                    console.log("this.memoryInputsEnd", this.memoryInputsEnd, this.trueMaxDEnd);
                 }
                 if (Number(this.$inputD.value) > this.trueMaxD) {
                     this.$inputD.style.color = "red";
@@ -263,12 +243,10 @@
                             this.$inputD.style.color = "black";
                         }), 1e3);
                     }), 200);
-                    console.log("autoRenameDayInYear StartDays", this.trueMaxD);
                 }
                 if (Number(this.$inputEndD.value) >= this.trueMaxDEnd) {
                     this.$inputEndD.value = this.trueMaxDEnd;
                     localStorage.setItem("inputEndD", this.$inputEndD.value);
-                    console.log("autoRenameDayInYear EndDays");
                 }
             }
         }
@@ -326,9 +304,7 @@
             let countKeyRight = 0;
             const cursorPosition = eventTargetInput.selectionStart;
             eventTargetInput.setSelectionRange(cursorPosition, cursorPosition);
-            let lastCursorPosition;
             eventTargetInput.addEventListener("blur", (function(e) {
-                console.log("this.$el[count]", eventTargetInput.value.length);
                 const changeFirstStr = str => {
                     eventTargetInput.value = eventTargetInput.value.replace(/^(\d)$/, `${str}$1`);
                 };
@@ -362,14 +338,11 @@
                     localStorage.setItem("inputEndY", e.target.value);
                     break;
                 }
-                lastCursorPosition = eventTargetInput.selectionStart;
-                console.log("lastCursorPosition", lastCursorPosition);
             }));
             eventTargetInput.addEventListener("keyup", (e => {
                 if (8 === e.keyCode && 0 === e.target.selectionStart) {
                     //! Backspace key
                     countBackspacePositionZero += 1;
-                    console.log("countBackspacePositionZero", countBackspacePositionZero);
                     if (count - 1 !== -1 && 2 === countBackspacePositionZero) {
                         this.$el[count - 1].focus();
                         const lastSymbol = this.$el[count - 1].value.length;
@@ -387,7 +360,6 @@
                 }
                 if (37 === e.keyCode && 0 === e.target.selectionStart) {
                     //! <- key
-                    console.log("cursorPosition <- key", cursorPosition);
                     countKeyLeft += 1;
                     countKeyRight = 0;
                     if (count - 1 !== -1 && 2 === countKeyLeft) {
@@ -396,12 +368,9 @@
                         const lastSymbol = this.$el[count - 1].value.length;
                         this.$el[count - 1].setSelectionRange(lastSymbol, lastSymbol);
                     }
-                    console.log("countKeyLeft", countKeyLeft);
                 } else countKeyLeft = 0;
                 if (39 === e.keyCode && e.target.selectionStart === e.target.value.length) {
                     //! -> key
-                    console.log("cursorPosition -> key", e.target.selectionStart);
-                    console.log("e.target.value.length", e.target.value.length);
                     countKeyRight += 1;
                     countKeyLeft = 0;
                     if (count - 1 !== 4 && 2 === countKeyRight) {
@@ -409,7 +378,6 @@
                         this.$el[count + 1].focus();
                         this.$el[count + 1].setSelectionRange(0, 0);
                     }
-                    console.log("countKeyRight", countKeyRight);
                 } else countKeyRight = 0;
             }));
         }
@@ -430,14 +398,12 @@
         setLoadLocalStorage($elem, key) {
             $elem.addEventListener("blur", (() => {
                 localStorage.setItem(key, $elem.value);
-                console.log("BLUUUR localStorage.setItem(key, $elem.value);", $elem.value);
             }));
             $elem.addEventListener("input", (() => {
                 localStorage.setItem(key, $elem.value);
             }));
             window.addEventListener("load", (() => {
                 $elem.value = localStorage.getItem(key);
-                console.warn("setLoadLocalStorage($elem, key)=======================================================================", this.dateEnd());
                 contentDefault(".days-between-dates");
             }));
         }
@@ -495,17 +461,13 @@
         eventBtns() {
             const $elBtns = document.querySelectorAll(".btn");
             document.querySelector(".days-between-dates");
-            const resultDbd = document.querySelector(".result-render-dbd");
+            document.querySelector(".result-render-dbd");
             $elBtns.forEach((i => {
-                console.log(i);
                 i.addEventListener("click", (e => {
                     if (e.target.closest(`[data-btn="clear-start"]`)) {
                         this.$inputD.value = "";
                         this.$inputM.value = "";
                         this.$inputY.value = "";
-                        this.$inputD.focus();
-                        console.log("this.$el.innerHTML", this.$el.innerHTML);
-                        console.log("this.$el", this.$el);
                         this.localStorageClear("start");
                         this.ifRenderResultDbd();
                     } else if (e.target.closest(`[data-btn="clear-end"]`)) {
@@ -515,12 +477,9 @@
                         this.$inputEndD.placeholder = this.currentEndD;
                         this.$inputEndM.placeholder = this.currentEndM;
                         this.$inputEndY.placeholder = this.currentEndY;
-                        this.$inputEndD.focus();
                         this.localStorageClear("end");
                         this.ifRenderResultDbd();
                     } else if (e.target.closest(`[data-btn="clear-result"]`)) {
-                        console.log(e.target);
-                        console.log(resultDbd);
                         contentDefault(".days-between-dates");
                         this.resultDbdVisible = false;
                         localStorage.setItem("resultDbdVisible", this.resultDbdVisible);
@@ -578,15 +537,11 @@
                     }
                 };
                 setClassNameChekbox("first-day", 1);
-                console.log("this.includingFirstDay", this.includingFirstDay);
                 setClassNameChekbox("last-day", 2);
-                console.log("this.includingLastDay", this.includingLastDay);
             }));
         }
-        isloadPage() {}
         errorInpust() {
             let countItems = 0;
-            console.log("this.dateEnd() === error", this.dateEnd());
             this.$el.forEach((i => {
                 countItems += 1;
                 const errorInput = (mod, err) => {
@@ -602,36 +557,30 @@
                     });
                 };
                 if (true === this.isLoad) {
-                    if (2 === countItems && Number(i.value) > 12 || 5 === countItems && Number(i.value) > 12) {
-                        console.log("countItems === 2 && Number(i.value) > 12");
-                        errorInput("Error > 13M", i.value);
-                    }
+                    if (2 === countItems && Number(i.value) > 12 || 5 === countItems && Number(i.value) > 12) errorInput("Error > 13M", i.value);
                     if (false === this.dateStart()) if (i.value.length < 2 && countItems <= 2) //! errorInpust Start date
                     errorInput(); else if (i.value.length < 4 && 3 === countItems) errorInput();
-                    if ("error" === this.dateEnd()) if (i.value.length < 2 && countItems >= 4 && countItems <= 5) {
-                        //! errorInpust End date
-                        console.error("errrrrrooorrrr blinking last twooo=======================");
-                        console.warn("i.value.length < 2 && countItems <= 5");
-                        errorInput();
-                    } else if (i.value.length < 4 && 6 === countItems) errorInput();
+                    if ("error" === this.dateEnd()) if (i.value.length < 2 && countItems >= 4 && countItems <= 5) //! errorInpust End date
+                    errorInput(); else if (i.value.length < 4 && 6 === countItems) errorInput();
                 }
             }));
         }
         scrollToElem() {
             this.$btnSubmit.addEventListener("click", (() => {
                 const sparkPlan = document.querySelector(".result-render-dbd");
-                const sparkPlanBottom = sparkPlan.offsetTop - 30;
-                window.scrollTo({
-                    top: sparkPlanBottom,
-                    behavior: "smooth"
-                });
+                if (sparkPlan) {
+                    const sparkPlanBottom = sparkPlan.offsetTop - 30;
+                    window.scrollTo({
+                        top: sparkPlanBottom,
+                        behavior: "smooth"
+                    });
+                }
             }));
         }
     }
     const inputsDbd = new InputsDbd(".main__input");
     inputsDbd.runLocalStorage();
     inputsDbd.eventBtns();
-    inputsDbd.isloadPage();
     for (let count = 0; count < inputsDbd.$el.length; count++) {
         let iInputs = inputsDbd.$el[count];
         iInputs.setAttribute("inputmode", "numeric");
@@ -656,8 +605,6 @@
         }));
     }
     inputsDbd.setChekbox();
-    console.error("inputsDbd.includingFirstDay 1", inputsDbd.includingFirstDay);
-    console.error("inputsDbd.includingLastDay 2", inputsDbd.includingLastDay);
     inputsDbd.runLocalStorage();
     inputsDbd.$btnSubmit.addEventListener("click", (e => {
         //! event CLICK btnSubmit!!!===========
@@ -665,19 +612,14 @@
         for (let count = 0; count < inputsDbd.$el.length; count++) {
             let iInputs = inputsDbd.$el[count];
             inputsDbd.validEventTargetClick(iInputs, count);
-            console.error("Number(inputsDbd.$inputM) <= 12", inputsDbd.$el[1].value <= 12);
         }
         if (false !== inputsDbd.dateStart() && inputsDbd.$el[1].value <= 12 && inputsDbd.$el[4].value <= 12) {
-            console.error("inputsDbd.includingFirstDay 1", inputsDbd.includingFirstDay);
-            console.error("inputsDbd.includingLastDay 2", inputsDbd.includingLastDay);
             const dbd = new DaysBetweenDates(".days-between-dates", {
                 startDate: inputsDbd.dateStart(),
                 endDate: inputsDbd.dateEnd(),
                 includingFirstDay: inputsDbd.includingFirstDay,
                 includingLastDay: inputsDbd.includingLastDay
             });
-            console.warn("inputsDbd.dateStart()", inputsDbd.dateStart());
-            console.warn("inputsDbd.dateEnd()", inputsDbd.dateEnd());
             //!====
             if (false !== dbd.errorMessage()) resultRenderHtml(".days-between-dates", {
                 isError: false,

@@ -26,15 +26,12 @@ export class InputsDbd {
 		this.currentEndD = this.formatDateTwoNum(new Date().getDate())
 		this.currentEndM = this.formatDateTwoNum(new Date().getMonth() + 1)
 		this.currentEndY = new Date().getFullYear()
-
-		console.error('this.formatDateTwoNum(new Date().getDate())', this.formatDateTwoNum(9));
 		
 		this.$inputEndD.placeholder = this.currentEndD;
 		this.$inputEndM.placeholder = this.currentEndM;
 		this.$inputEndY.placeholder = this.currentEndY;
 		
 		this.currentDate = `${this.currentEndD}.${this.currentEndM}.${this.currentEndY}`
-		console.error('this.formatDateTwoNum(new Date().getDate())', this.currentDate);
 
 		this.$checkedFirstDay = document.querySelector(`[data-input-setting="first-day"]`)
 		this.$checkedLastDay = document.querySelector(`[data-input-setting="last-day"]`)
@@ -48,8 +45,6 @@ export class InputsDbd {
 		})
 
 		this.resultDbdVisible = false;
-
-		
 	} 
 
 	changeplaceholderContent(eventTargetInput, count) {
@@ -76,7 +71,7 @@ export class InputsDbd {
 		const eValue = eventTargetInput.value;
 
 		if (count === 2 || count === 5) {
-			console.log(count);
+
 			eventTargetInput.value = eValue.replace(/(.{4})./, '$1').replace(/[^\d]/g, '')
 			if (this.$el[count].value.length >= 4) {
 				if (count + 1 < 4) {
@@ -94,7 +89,7 @@ export class InputsDbd {
 				&& this.isLoad === true
 				&& this.$inputM.value === ''
 				&& this.$inputY.value === '') {
-				console.error('(count === 0 || count === 3)')
+
 				if (Number(eventTargetInput.value) > 31) {
 					this.colorErrorInputOverDate(eventTargetInput, '31', 'red', 'black', count)
 				}
@@ -107,18 +102,15 @@ export class InputsDbd {
 			if (count === 1 || count === 4) {
 				if (eventTargetInput.value === '00') {
 					this.colorErrorInputOverDate(eventTargetInput, '01', 'red', 'black', count)
-					
 				}
 				if (Number(eventTargetInput.value) > 12) {
 					this.colorErrorInputOverDate(eventTargetInput, '12', 'red', 'black', count)
-					
 				}
 			}
-			
 		}
 	}
 
-	autoRenameDayInYear(mo, ye) {
+	autoRenameDayInYear() {
 		if (this.$inputD.value.length === 2 
 				&& this.$inputM.value.length === 2 
 				&& this.$inputY.value.length === 4
@@ -151,8 +143,6 @@ export class InputsDbd {
 				if (onlineInputsStart !== this.memoryInputsStart) {
 					this.memoryInputsStart = `${this.$inputM.value}${this.$inputY.value}`
 					this.trueMaxD = calendarGen(y, m - 1)
-					console.log('this.memoryInputsStart', this.memoryInputsStart, this.trueMaxD);
-					
 				}
 			} else {
 				this.memoryInputsStart === ''
@@ -162,7 +152,6 @@ export class InputsDbd {
 				|| this.memoryInputsEnd[1] !== this.$inputEndY.value) {
 					this.memoryInputsEnd = [this.$inputEndM.value, this.$inputEndY.value]
 					this.trueMaxDEnd = calendarGen(yEnd, mEnd - 1)		
-					console.log('this.memoryInputsEnd', this.memoryInputsEnd, this.trueMaxDEnd);
 				}
 			
 			if (Number(this.$inputD.value) > this.trueMaxD ) {
@@ -175,15 +164,12 @@ export class InputsDbd {
 						this.$inputD.style.color = 'black'
 					}, 1000);
 				}, 200);
-				console.log('autoRenameDayInYear StartDays', this.trueMaxD);
 			}
 			
 			if (Number(this.$inputEndD.value) >= this.trueMaxDEnd) {
 				this.$inputEndD.value = this.trueMaxDEnd
 				localStorage.setItem('inputEndD', this.$inputEndD.value)
-				console.log('autoRenameDayInYear EndDays');
 			}
-
 		}
 	}
 
@@ -220,7 +206,6 @@ export class InputsDbd {
 			this.resultDbdVisible = false;
 			localStorage.setItem('resultDbdVisible', this.resultDbdVisible)
 		}
-		
 	}
 
 	colorErrorInputOverDate($el, rplc, colorEror, color, count) {
@@ -245,11 +230,8 @@ export class InputsDbd {
 		const cursorPosition = eventTargetInput.selectionStart;
 		eventTargetInput.setSelectionRange(cursorPosition, cursorPosition);
 
-		let lastCursorPosition;
 
 		eventTargetInput.addEventListener('blur', function(e) {
-
-			console.log('this.$el[count]', eventTargetInput.value.length);
 			const changeFirstStr = (str)=> {
 				eventTargetInput.value = eventTargetInput.value.replace(/^(\d)$/, `${str}$1`)
 			}
@@ -298,21 +280,12 @@ export class InputsDbd {
 					localStorage.setItem('inputEndY', e.target.value)
 					break;
 			}
-
-			// Отримання позиції курсора під час втрати фокуса введенням
-			lastCursorPosition = eventTargetInput.selectionStart;
-			console.log('lastCursorPosition', lastCursorPosition);
-
 		});
 
 		eventTargetInput.addEventListener('keyup', (e)=> {
-			// if (e.key === 'Backspace') {
-			// 	this.countBackspace += 1
-			// }
 			if (e.keyCode === 8 && e.target.selectionStart === 0) { //! Backspace key
 				countBackspacePositionZero += 1
-				// this.countBackspace = 0
-				console.log('countBackspacePositionZero', countBackspacePositionZero);
+
 				if (count - 1 !== -1 && countBackspacePositionZero === 2) {
 					this.$el[count - 1].focus();
 					const lastSymbol = this.$el[count - 1].value.length
@@ -322,7 +295,6 @@ export class InputsDbd {
 				
 			} else {
 				countBackspacePositionZero = 0
-				// this.countBackspace = 0
 			}
 			
 			//======================================================================
@@ -336,25 +308,22 @@ export class InputsDbd {
 			}
 			
 			if (e.keyCode === 37 && e.target.selectionStart === 0) { //! <- key
-				console.log('cursorPosition <- key', cursorPosition);
+
 				countKeyLeft += 1
 				countKeyRight = 0
-				// console.log('countKeyLeft', countKeyLeft);
+
 				if (count - 1 !== -1 && countKeyLeft === 2) {
 					countKeyLeft = 0
 					this.$el[count - 1].focus();
 					const lastSymbol = this.$el[count - 1].value.length
 					this.$el[count - 1].setSelectionRange(lastSymbol, lastSymbol)
 				}
-				console.log('countKeyLeft', countKeyLeft);
 				
 			} else {
 				countKeyLeft = 0
 			} 
 
 			if (e.keyCode === 39 && e.target.selectionStart === e.target.value.length) { //! -> key
-				console.log('cursorPosition -> key', e.target.selectionStart);
-				console.log('e.target.value.length', e.target.value.length);
 				countKeyRight += 1
 				countKeyLeft = 0
 				if (count - 1 !== 4 && countKeyRight === 2) {
@@ -362,7 +331,7 @@ export class InputsDbd {
 					this.$el[count + 1].focus();
 					this.$el[count + 1].setSelectionRange(0, 0)
 				}
-				console.log('countKeyRight', countKeyRight);
+
 			} else {
 				countKeyRight = 0
 			}
@@ -383,24 +352,6 @@ export class InputsDbd {
 		})
 	}
 
-	// cursorPositionClick(eventTarget, count) {
-	// 	if (eventTarget.selectionStart === 0) {
-	// 		// eventTarget
-	// 		if (eventTarget.keyCode === 8) { //! Backspace key
-	// 			if (count - 1 !== -1 && countBackspace === 2) {
-	// 				// this.$el[count - 1].selectionStart = this.$el[count - 1].length
-	// 				this.$el[count - 1].focus();
-				
-	// 				const lastSymbol = this.$el[count - 1].value.length
-	// 				this.$el[count - 1].setSelectionRange(lastSymbol, lastSymbol)
-	// 				// this.$el[count].selectionStart = 0
-	// 			}
-	// 		}
-	// 	}
-	// 	console.log('cursorPositionClick event.target', eventTarget.selectionStart);
-	// }
-	
-
 	validEventTargetClick(eventTargetClick, count) {
 		const value = eventTargetClick.value;
 		
@@ -412,30 +363,17 @@ export class InputsDbd {
 	}
 
 	setLoadLocalStorage($elem, key) {
-		// localStorage.setItem(key, $elem.value);
-		// Save the input value in localStorage when it is changed
 		$elem.addEventListener('blur', ()=> {
 			localStorage.setItem(key, $elem.value);
-			console.log('BLUUUR localStorage.setItem(key, $elem.value);', $elem.value);
+
 		})
 		$elem.addEventListener('input', () => {
 			localStorage.setItem(key, $elem.value);
 		});
 
-		// Restore the input value from localStorage when loading the page
 		window.addEventListener('load', () => {
 			$elem.value = localStorage.getItem(key);
-			console.warn('setLoadLocalStorage($elem, key)=======================================================================', this.dateEnd());
-			// if ($elem.value !== '') {
-			// 	this.$btnSubmit.click();
-			// }
-			// this.$el.innerHTML = ''
 			contentDefault('.days-between-dates')
-			
-			// if (this.dateStart() !== false) {
-			// 		this.$btnSubmit.click();
-			// 	}
-			
 		});
 	}
 
@@ -508,16 +446,11 @@ export class InputsDbd {
 		&& this.$inputD.value.length === 2
 		&& this.$inputM.value.length === 2
 		&& this.$inputY.value.length === 4) {
-			// localStorage.setItem('input-start-value-D', this.$inputD.value);
-			// localStorage.setItem('input-start-value-M', this.$inputM.value);
-			// localStorage.setItem('input-start-value-Y', this.$inputY.value);
 			return `${this.$inputD.value}.${this.$inputM.value}.${this.$inputY.value}`
-			
 		} else {
 			return false
 		}
 	}
-	
 
 	dateEnd() {
 		if (this.isLoad === true) {
@@ -545,18 +478,12 @@ export class InputsDbd {
 		const $dbd = document.querySelector('.days-between-dates')
 		const resultDbd = document.querySelector('.result-render-dbd');
 		$elBtns.forEach((i)=> {
-			console.log(i);
 			i.addEventListener('click', (e)=> {
-				// if (e.target.dataset.btn === 'clear-start') {
 				if (e.target.closest(`[data-btn="clear-start"]`)) {
 					this.$inputD.value = '';
 					this.$inputM.value = '';
 					this.$inputY.value = '';
-
-					this.$inputD.focus()
-
-					console.log('this.$el.innerHTML', this.$el.innerHTML);
-					console.log('this.$el', this.$el);
+					
 					this.localStorageClear('start')
 					this.ifRenderResultDbd()
 				// } else if (e.target.dataset.btn === 'clear-end') {
@@ -569,14 +496,9 @@ export class InputsDbd {
 					this.$inputEndM.placeholder = this.currentEndM;
 					this.$inputEndY.placeholder = this.currentEndY;
 
-					this.$inputEndD.focus()
-
 					this.localStorageClear('end')
 					this.ifRenderResultDbd()
 				} else if (e.target.closest(`[data-btn="clear-result"]`)) {
-						console.log(e.target);
-						console.log(resultDbd);
-						// $dbd.innerHTML = '';
 						contentDefault('.days-between-dates')
 						this.resultDbdVisible = false
 						localStorage.setItem('resultDbdVisible', this.resultDbdVisible)
@@ -602,7 +524,6 @@ export class InputsDbd {
 	setChekbox() {
 		const classNameChecked = 'checked'
 
-		// window.addEventListener('load', () => {
 			if (this.$checkedFirstDay.checked === true || localStorage.getItem('includingFirstDay') === 'true') {
 				this.$checkedFirstDay.parentNode.classList.add(classNameChecked)
 				this.includingFirstDay = true
@@ -620,9 +541,6 @@ export class InputsDbd {
 				this.$checkedLastDay.parentNode.classList.remove(classNameChecked)
 				this.includingLastDay = false
 			}
-		// })
-
-		
 
 		this.btnsSettings.addEventListener('input', (e)=> {
 			const setClassNameChekbox = (dataName, includingDay) => {
@@ -654,66 +572,24 @@ export class InputsDbd {
 			}
 
 			setClassNameChekbox('first-day', 1)
-			console.log('this.includingFirstDay', this.includingFirstDay);
-
 			setClassNameChekbox('last-day', 2)
-			console.log('this.includingLastDay', this.includingLastDay);
-
 		})
-	}
-
-	// boolCheckedFirstDay() {
-	// 		if (this.$checkedFirstDay.checked = true) {
-	// 			this.includingFirstDay = true
-	// 		} else {
-	// 			this.includingFirstDay = false
-	// 		}
-	// 	console.log('this.includingFirstDay', this.includingFirstDay);
-
-	// }
-
-	// boolCheckedLastDay() {
-	// 		if (this.$checkedLastDay.checked = true) {
-	// 			this.includingLastDay = true
-	// 		} else {
-	// 			this.includingLastDay = false
-	// 		}
-	// 	console.log('this.includingLastDay', this.includingLastDay);
-
-	// }
-
-	isloadPage() {
-		
-		// window.addEventListener('load', (e)=> {
-		// 	this.isLoad = true
-		// 	console.error('isLoad = true', isLoad);
-		// 	console.error('isLoad e', e);
-		// })
 	}
 
 	errorInpust() {
 		let countItems = 0
 		const errorNameClass = 'error-result-dbd'
 		
-		console.log('this.dateEnd() === error', this.dateEnd());
+
 		this.$el.forEach((i)=> {
 			countItems += 1
 			
 			const errorInput = (mod, err)=> {
 				i.classList.add('error-inputs')
-				// i.classList.add('tittle-error-dnone')npm run dev
-				// this.$dbdTextRender.innerHTML = ''
 				contentDefault('.days-between-dates')
-				// resultRenderHtml('.days-between-dates', {
-				// 	isError: true,
-				// 	errorClassName: 'error-result-dbd',
-				// 	errorMessage: 'Поле початкової дати міститить надто мало символів!!!'
-				// })
+
 				i.addEventListener('animationend', () => {
 					i.classList.remove('error-inputs');
-					// if (typeof mod !== 'string') {
-						// this.$dbdTextRender.innerHTML = ''
-					// }
 				});
 				
 				if (mod === 'Error > 13M') {
@@ -723,17 +599,13 @@ export class InputsDbd {
 						errorMessage: 'Кількість місяців у році не може перевищувати 12!'
 					})
 				} 
-				// this.$dbdTextRender.classList.add(errorNameClass)
 			}
-			
-			
 			
 			if (this.isLoad === true) {
 				if (countItems === 2 && Number(i.value) > 12
 					|| countItems === 5 && Number(i.value) > 12) {
-					console.log('countItems === 2 && Number(i.value) > 12');
+
 					errorInput('Error > 13M', i.value)
-					// return
 				}
 	
 				if (this.dateStart() === false) {
@@ -746,30 +618,29 @@ export class InputsDbd {
 	
 				if (this.dateEnd() === 'error') {
 					if (i.value.length < 2 && countItems >= 4 && countItems <= 5) { //! errorInpust End date
-						console.error('errrrrrooorrrr blinking last twooo======================='); //?= =======================
-						console.warn('i.value.length < 2 && countItems <= 5');
+
 					errorInput()
 					} else if (i.value.length < 4 && countItems === 6) {
 						// this.$dbdTextRender.innerHTML = 'Помилка введення!!!'
 						errorInput()
 					}
 				}
-
 			}
 		}) 
 	}
 
 	scrollToElem() {
-		// const button = document.getElementById('myButton');
-		// console.log('sparkPlan', sparkPlan);
-			this.$btnSubmit.addEventListener('click', () => {
-				const sparkPlan = document.querySelector('.result-render-dbd');
-			//   const sparkPlanBottom = sparkPlan.offsetTop - sparkPlan.offsetHeight;
-			  const sparkPlanBottom = sparkPlan.offsetTop - 30
-			  window.scrollTo({
-				 top: sparkPlanBottom,
-				 behavior: 'smooth'
-			  });
-			});
+		this.$btnSubmit.addEventListener('click', () => {
+			const sparkPlan = document.querySelector('.result-render-dbd');
+		//   const sparkPlanBottom = sparkPlan.offsetTop - sparkPlan.offsetHeight;
+		if (sparkPlan) {
+				const sparkPlanBottom = sparkPlan.offsetTop - 30
+				window.scrollTo({
+					top: sparkPlanBottom,
+					behavior: 'smooth'
+				});
+
+			}
+		});
 	}
 }

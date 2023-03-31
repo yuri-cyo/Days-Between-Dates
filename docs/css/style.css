@@ -14,8 +14,7 @@
 [class*=" _icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: "icomoon" !important;
-  margin-right: 0.2em;
-  margin-left: 0.2em;
+  margin: 0.2em;
   speak: never;
   font-style: normal;
   font-weight: normal;
@@ -570,9 +569,31 @@ label {
           animation: blink 0.3s ease-in-out 5;
 }
 
+.error-inputs::-webkit-input-placeholder {
+  color: #d24f41;
+}
+
+.error-inputs::-moz-placeholder {
+  color: #d24f41;
+}
+
+.error-inputs:-ms-input-placeholder {
+  color: #d24f41;
+}
+
+.error-inputs::-ms-input-placeholder {
+  color: #d24f41;
+}
+
+.error-inputs::placeholder {
+  color: #d24f41;
+}
+
 @-webkit-keyframes blink {
   50% {
-    background-color: #d24f41;
+    background-color: #f6897d;
+    -webkit-transform: scale(1.05);
+            transform: scale(1.05);
     -webkit-transition: all 0.3s ease 0s;
     -o-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
@@ -581,7 +602,9 @@ label {
 
 @keyframes blink {
   50% {
-    background-color: #d24f41;
+    background-color: #f6897d;
+    -webkit-transform: scale(1.05);
+            transform: scale(1.05);
     -webkit-transition: all 0.3s ease 0s;
     -o-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
@@ -640,6 +663,7 @@ label {
 
 .content-here__icon {
   color: #c3c3c3;
+  image-rendering: optimizeQuality;
 }
 
 .menu-header {
@@ -695,20 +719,15 @@ label {
 
 footer {
   margin-top: 1.875rem;
-  background: -o-linear-gradient(45deg, rgba(92, 92, 92, 0.44) 0%, rgba(106, 105, 115, 0.44) 50%, rgba(92, 92, 92, 0.44) 100%);
-  background: linear-gradient(45deg, rgba(92, 92, 92, 0.44) 0%, rgba(106, 105, 115, 0.44) 50%, rgba(92, 92, 92, 0.44) 100%);
+  background-color: rgba(37, 37, 37, 0.537);
   -webkit-backdrop-filter: blur(20px);
           backdrop-filter: blur(20px);
-  border-radius: 3.125rem 3.125rem 0 0;
+  border-top: 1px solid #484848;
 }
 
 .footer {
   padding-top: 1.875rem;
   padding-bottom: 1.875rem;
-}
-
-.footer a {
-  display: inline-block;
 }
 
 .footer__container {
@@ -738,12 +757,18 @@ footer {
   margin-bottom: 0.625rem;
 }
 
-.footer__my-portfolio:hover {
-  text-decoration: underline;
+.footer__my-name {
+  color: #d24f41;
+  font-weight: 600;
 }
 
-.footer__project-link:hover {
-  text-decoration: underline;
+.footer__link {
+  padding: 0.3125rem;
+}
+
+.footer__link:hover {
+  background-color: #565156;
+  border-radius: 6.25rem;
 }
 
 .footer__container-social {
@@ -762,10 +787,22 @@ footer {
 .footer__social {
   margin-top: 0.625rem;
   font-size: 1.25rem;
+  padding: 0.3125rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .footer__social:hover {
   color: #ee958b;
+  background-color: #565156;
+  border-radius: 0.625rem;
 }
 
 *:focus {
@@ -975,6 +1012,7 @@ main {
   -webkit-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
+  margin-left: 1.3125rem;
 }
 
 .main__settings-checkbox-label:hover:after {
@@ -1301,10 +1339,6 @@ main {
     text-align: center;
   }
 
-  footer {
-    border-radius: 2.40625rem 2.40625rem 0 0;
-  }
-
   .home__container {
     border-radius: 2.1875rem;
   }
@@ -1371,10 +1405,6 @@ main {
     width: 100%;
     height: 1px;
     background-color: #E2E2E2;
-  }
-
-  footer {
-    border-radius: 1.46875rem 1.46875rem 0 0;
   }
 
   .home__container {

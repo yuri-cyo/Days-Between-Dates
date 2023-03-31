@@ -1,21 +1,22 @@
-$light: rgba(160, 160, 160, 0.475);
-$shadow: rgba(28, 28, 28, 0.845);
+// $light: rgba(160, 160, 160, 0.475);
+// $shadow: rgba(28, 28, 28, 0.845);
 
-$box-shadow-bg: 5px 5px 5px $shadow,
-						-5px -5px 5px $light;
-$box-shadow-footer: 0px 5px 5px $shadow,
-						0px -5px 5px $light;
-$box-shadow-btn: 3px 3px 3px $shadow,
--2px -2px 2px $light;
-$box-shadow-btn-hover: 5px 5px 5px $shadow,
--3px -3px 3px $light;
+// $box-shadow-bg: 5px 5px 5px $shadow,
+// 						-5px -5px 5px $light;
+// $box-shadow-footer: 0px 5px 5px $shadow,
+// 						0px -5px 5px $light;
+// $box-shadow-btn: 3px 3px 3px $shadow,
+// -2px -2px 2px $light;
+// $box-shadow-btn-hover: 5px 5px 5px $shadow,
+// -3px -3px 3px $light;
 
 $border-radius-card: rem(50);
 $border-radius-card-md2: rem(35);
 $border-radius-card-md3: rem(27);
-$border-radius-footer: rem(50) rem(50) 0 0;
-$border-radius-footer-md2: rem(38.5) rem(38.5) 0 0;
-$border-radius-footer-md3: rem(23.5) rem(23.5) 0 0;
+// $border-radius-footer: rem(50) rem(50) 0 0;
+// $border-radius-footer-md2: rem(38.5) rem(38.5) 0 0;
+// $border-radius-footer-md3: rem(23.5) rem(23.5) 0 0;
+$border-color-container: #484848;
 
 $colorBtn: #865dac;
 $colorHoverBtn: #856287;
@@ -206,7 +207,11 @@ input::-webkit-inner-spin-button {
 }
 
 .error-inputs {
+	// position: relative;
 	animation: blink .3s ease-in-out 5;
+	&::placeholder {
+		color: $colorBtnBorder;
+	}
 }
 
 @keyframes blink {
@@ -215,7 +220,10 @@ input::-webkit-inner-spin-button {
 	// 	inset -6px -6px 6px #ffd3c5;
 	// background: radial-gradient(50% 50% at 50% 50%, rgb(225, 225, 225) 0%, #D24F41 100%);
 	// background: linear-gradient(313.68deg, rgb(217, 217, 217) 0%, #D24F41 102.41%);
-	background-color: $colorClearBtn;
+	background-color: #f6897d;
+	// border: #d24f41 solid 5px;
+	transform: scale(1.05);
+
 	transition: all 0.3s ease 0s;
 	}
 }
@@ -267,6 +275,7 @@ input::-webkit-inner-spin-button {
 		@include adaptiveValue("font-size", 250, 150);
 		// color: $bgContentFone;
 		color: #c3c3c3;
+		image-rendering: optimizeQuality;
 	}
 
 }

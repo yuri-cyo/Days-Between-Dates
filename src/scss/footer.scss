@@ -1,34 +1,17 @@
-//====================================================================================================
-// @import "vars";
+//=============================================
 footer {
 	margin-top: rem(30);
 	// background-color: #343438a7;
-	background: linear-gradient(45deg, rgba(92, 92, 92, 0.44) 0%, rgba(106, 105, 115, 0.44) 50%, rgba(92, 92, 92, 0.44) 100%);
+	// background: linear-gradient(45deg, rgba(92, 92, 92, 0.44) 0%, rgba(106, 105, 115, 0.44) 50%, rgba(92, 92, 92, 0.44) 100%);
+	background-color: $bgDarcContentFone;
 	backdrop-filter: blur(20px);
-	// box-shadow: $box-shadow-footer;
-	// min-height: rem(100);
-	// margin: 0 rem(15) 0 rem(15);
-	border-radius: $border-radius-footer;
-
-	@media (max-width:$tablet){
-		border-radius: $border-radius-footer-md2;
-	}
-	@media (max-width:$mobile){
-		border-radius: $border-radius-footer-md3;
-	}
-	@media (max-width: rem(1355)){
-		// margin: rem(7) rem(7) rem(0) rem(7);
-	}
-	
+	border-top: 1px solid $border-color-container;
 }
 
 .footer {
 	padding-top: rem(30);
 	padding-bottom: rem(30);
 
-	a {
-		display: inline-block;
-	}
 
 	&__container {
 		display: flex;
@@ -41,19 +24,34 @@ footer {
 	&__my-portfolio-wrapper {
 		display: flex;
 		flex-direction: column;
+		// flex: 0 200px;
 	}
 
 	&__my-portfolio {
 		margin-bottom: rem(10);
 		// margin-right: rem(50);
-		&:hover {
-			text-decoration: underline;
-		}
+	}
+	
+	&__my-name {
+		color: $colorBtnBorder;
+		font-weight: 600;
+		// text-shadow: 1px 1px 10px #a996aa;
 	}
 
+	&__this-project-wrapper {
+
+	}
+	
 	&__project-link {
+	}
+
+	&__link {
+		padding: rem(5);
+		// transition: all 0.2s ease 0s;
 		&:hover {
-			text-decoration: underline;
+			background-color: #565156;
+			border-radius: rem(100);
+			// transition: all 0.2s ease 0s;
 		}
 	}
 
@@ -67,9 +65,15 @@ footer {
 	&__social {
 		margin-top: rem(10);
 		font-size: rem(20);
+		padding: rem(5);
+		display: flex;
+		justify-content:center;
+		align-items: center;
 		
 		&:hover {
 			color: #ee958b;
+			background-color: #565156;
+			border-radius: rem(10);
 		}
 	}
 

@@ -208,6 +208,7 @@ main {
 		text-align: center;
 		position: relative;
 		transition: all 0.3s ease 0s;
+		margin-left: rem(21);
 		&:hover {
 			&:after {
 				content: '';
