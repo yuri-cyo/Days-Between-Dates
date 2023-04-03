@@ -427,12 +427,6 @@ label {
 }
 
 .result-render-dbd {
-  -webkit-animation-name: fadeIn;
-          animation-name: fadeIn;
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -446,6 +440,54 @@ label {
   position: relative;
   background-color: rgba(0, 0, 0, 0.2666666667);
   border-radius: 1.25rem;
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+
+  to {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+
+  to {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@-webkit-keyframes fadeOut {
+  from {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+
+  to {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+
+  to {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
 }
 
 .tittle-result {
@@ -505,63 +547,6 @@ label {
 
 .dbd__error-result {
   line-height: normal;
-}
-
-.resultFadeOut {
-  -webkit-animation-name: fadeOut;
-          animation-name: fadeOut;
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-}
-
-@-webkit-keyframes fadeIn {
-  from {
-    -webkit-transform: scale(0);
-            transform: scale(0);
-  }
-
-  to {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    -webkit-transform: scale(0);
-            transform: scale(0);
-  }
-
-  to {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-  }
-}
-
-@-webkit-keyframes fadeOut {
-  from {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-  }
-
-  to {
-    -webkit-transform: scale(0);
-            transform: scale(0);
-  }
-}
-
-@keyframes fadeOut {
-  from {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-  }
-
-  to {
-    -webkit-transform: scale(0);
-            transform: scale(0);
-  }
 }
 
 .error-inputs {
@@ -653,12 +638,6 @@ label {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-animation-name: fadeIn;
-          animation-name: fadeIn;
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
 }
 
 .content-here__icon {
@@ -963,7 +942,8 @@ main {
 }
 
 .main__btn-submit:focus-visible {
-  outline: 2px solid rgb(255, 254, 254);
+  -webkit-box-shadow: -0.4375rem -0.4375rem 0.625rem #565656, 0.4375rem 0.4375rem 0.625rem #2c2c2c;
+          box-shadow: -0.4375rem -0.4375rem 0.625rem #565656, 0.4375rem 0.4375rem 0.625rem #2c2c2c;
   -webkit-transition: all 0s ease 0s;
   -o-transition: all 0s ease 0s;
   transition: all 0s ease 0s;

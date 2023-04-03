@@ -200,8 +200,8 @@ export class InputsDbd {
 	ifRenderResultDbd() {
 		const resultDbd = document.querySelector('.result-render-dbd');
 		if (resultDbd) {
-		this.resultDbdVisible = true;
-		localStorage.setItem('resultDbdVisible', this.resultDbdVisible)
+			this.resultDbdVisible = true;
+			localStorage.setItem('resultDbdVisible', this.resultDbdVisible)
 		} else {
 			this.resultDbdVisible = false;
 			localStorage.setItem('resultDbdVisible', this.resultDbdVisible)

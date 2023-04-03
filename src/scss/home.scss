@@ -62,7 +62,6 @@ main {
 		@media (max-width: rem(1355)){
 			margin: rem(7) rem(7) rem(15) rem(7);
 		}
-		
 	}
 
 }
@@ -174,7 +173,9 @@ main {
 		outline: none;
 		@include adaptiveValue("font-size", 28, 24);
 		&:focus-visible {
-			outline: 2px solid rgb(255, 254, 254);
+			// outline: 2px solid $colorClearBtn;
+			box-shadow: rem(-7) rem(-7) rem(10) #565656, 
+			rem(7) rem(7) rem(10) #2c2c2c;
 			transition: all 0s ease 0s;
 		}
 		&:hover {

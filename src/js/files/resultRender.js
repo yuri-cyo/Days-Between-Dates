@@ -1,3 +1,5 @@
+import anime from "animejs";
+
 let isLoad = false;
 window.addEventListener('load', ()=> {
 	isLoad = true
@@ -8,14 +10,26 @@ export let isResult = false;
 export function contentDefault(selector) {
 		if (isLoad === true && document.querySelector('.content-here__wrapper') === null) {
 			const $el = document.querySelector(selector)
-			$el.innerHTML = ''
 		
+			$el.innerHTML = ''
+			
 			$el.insertAdjacentHTML('beforeend', `
 			<div class="content-here__wrapper">
-				<span class="_icon-content content-here__icon"></span>
+			<span class="_icon-content content-here__icon"></span>
 			</div>
 			`)
+
+			document.querySelector('.content-here__wrapper').style.transform = 'scale(0)'
+			anime({
+				targets: '.content-here__wrapper',
+				scale: {
+					value: 1,
+					duration: 700,
+					// easing: 'easeInOutExpo'
+				},
+			});
 		}
+	
 }
 contentDefault('.days-between-dates')
 
@@ -42,6 +56,8 @@ export function resultRenderHtml(selector, options) {
 	if (options.isError === true 
 		) {
 		$el.innerHTML = ''
+		
+
 		$el.insertAdjacentHTML('beforeend', `
 		<div class="result-render-dbd error-blinking-result unselectable">
 			<h4 class='tittle tittle-error tittle-result'>Помилка!!!</h4>
@@ -50,8 +66,19 @@ export function resultRenderHtml(selector, options) {
 			</div>
 		</div>
 		`)
+
+		document.querySelector('.result-render-dbd').style.transform = 'scale(0)'
+		anime({
+			targets: '.result-render-dbd',
+			scale: {
+				value: 1,
+				duration: 700,
+			},
+		});
+	
 	} else if (options.isError === false) {
 		$el.innerHTML = ''
+
 		$el.insertAdjacentHTML('beforeend', `
 			<div class="result-render-dbd">
 				<h4 class="tittle dbd__tittle tittle-result">Результат</h4>
@@ -83,5 +110,21 @@ export function resultRenderHtml(selector, options) {
 				</div>
 			</div>
 		`)
+		const resultElem = document.querySelector('.result-render-dbd')
+
+		resultElem.style.transform = 'scale(0) translateY(550px)'
+		anime({
+			targets: '.result-render-dbd',
+			translateY:  {
+				value: 0,
+				duration: 700,
+			},
+			scale: {
+				value: 1,
+				duration: 300,
+				easing: 'easeInOutQuad'
+			},
+		});
+		
 	}
 }

@@ -51,39 +51,38 @@ inputsDbd.$btnSubmit.addEventListener('click', (e) => { //! event CLICK btnSubmi
 	
 	//*================================================================================================== 
 	if (inputsDbd.dateStart() !== false && inputsDbd.$el[1].value <= 12 && inputsDbd.$el[4].value <= 12) {
-			const dbd = new DaysBetweenDates('.days-between-dates', {
-				startDate: inputsDbd.dateStart(),
+		const dbd = new DaysBetweenDates('.days-between-dates', {
+			startDate: inputsDbd.dateStart(),
+			endDate: inputsDbd.dateEnd(),
+			includingFirstDay: inputsDbd.includingFirstDay,
+			includingLastDay: inputsDbd.includingLastDay
+		})
+		const errorNameClass = 'error-result-dbd' //!====
+
+		if (dbd.errorMessage() !== false ) {
+			resultRenderHtml('.days-between-dates', {
+				isError: false,
+				totalDays: dbd.totalDays(),
+				starDate: inputsDbd.dateStart(),
 				endDate: inputsDbd.dateEnd(),
-				includingFirstDay: inputsDbd.includingFirstDay,
-				includingLastDay: inputsDbd.includingLastDay,
-				
+				curentData: inputsDbd.currentDate,
+				years: dbd.calcYear,
+				months: dbd.calcMonths,
+				days: dbd.calcDays,
+				includingFirstDay: inputsDbd.includingFirstDay
 			})
-			const errorNameClass = 'error-result-dbd' //!====
-	
-			if (dbd.errorMessage() !== false ) {
-				resultRenderHtml('.days-between-dates', {
-					isError: false,
-					totalDays: dbd.totalDays(),
-					starDate: inputsDbd.dateStart(),
-					endDate: inputsDbd.dateEnd(),
-					curentData: inputsDbd.currentDate,
-					years: dbd.calcYear,
-					months: dbd.calcMonths,
-					days: dbd.calcDays,
-					includingFirstDay: inputsDbd.includingFirstDay
-				})
-			} else if (dbd.errorMessage() === false && inputsDbd.dateEnd() !== 'error') {
-				resultRenderHtml('.days-between-dates', {
-					isError: true,
-					errorClassName: 'error-result-dbd',
-					errorMessage: 'Початкова дата більша за кінцеву дату!'
-				})
-			}
-		} 
+		} else if (dbd.errorMessage() === false && inputsDbd.dateEnd() !== 'error') {
+			resultRenderHtml('.days-between-dates', {
+				isError: true,
+				errorClassName: 'error-result-dbd',
+				errorMessage: 'Початкова дата більша за кінцеву дату!'
+			})
+		}
+	} 
 		//*=============================================================================================== 
 		inputsDbd.ifRenderResultDbd()
 		inputsDbd.scrollToElem()
-	})
+})
 	
 inputsDbd.escapeFromFocusInputUnload()
 
