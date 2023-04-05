@@ -625,9 +625,10 @@ label {
 }
 
 .content-here__wrapper {
-  border: 0.0625rem dashed #c3c3c3;
+  border: 0.0625rem dashed #d6d6d6;
   background-color: rgba(0, 0, 0, 0.2666666667);
   width: 100%;
+  padding: 3.75rem 0rem 0rem 0rem;
   border-radius: 1.25rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -638,6 +639,54 @@ label {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: relative;
+}
+
+.content-here__wrapper:before,
+.content-here__wrapper:after {
+  content: "";
+  position: absolute;
+  width: 1.25rem;
+  height: 2.5rem;
+  border-radius: 6.25rem;
+  border: 0.0625rem dashed #d6d6d6;
+  top: 0;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.content-here__wrapper:before {
+  left: 4.375rem;
+}
+
+.content-here__wrapper::after {
+  right: 4.375rem;
+}
+
+.content-here__line {
+  width: 100%;
+  border: 0.0625rem dashed #d6d6d6;
+  position: absolute;
+  top: 3.75rem;
+}
+
+.content-here__cells-wrapper {
+  padding: 0.625rem;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (40px)[7];
+  grid-template-columns: repeat(7, 40px);
+  gap: 0.625rem;
+  position: relative;
+}
+
+.content-here__cell {
+  border-radius: 6.25rem;
+  width: 100%;
+  background-color: #d6d6d6;
+  aspect-ratio: 1/1;
+  opacity: 0.5;
 }
 
 .content-here__icon {
@@ -1237,10 +1286,6 @@ main {
     font-size: 1.875rem;
   }
 
-  .content-here__wrapper {
-    padding: 3.125rem;
-  }
-
   .content-here__icon {
     font-size: 15.625rem;
   }
@@ -1414,6 +1459,14 @@ main {
   }
 }
 
+@media (max-width: 28.125em) {
+  .content-here__cells-wrapper {
+    -ms-grid-columns: (25px)[7];
+    grid-template-columns: repeat(7, 25px);
+    padding: 0.3125rem;
+  }
+}
+
 @media (max-width: 18.125em) {
   .popup__title {
     padding-top: 0.625rem;
@@ -1465,10 +1518,6 @@ main {
 
   .dbd__error-result {
     font-size: 1.25rem;
-  }
-
-  .content-here__wrapper {
-    padding: 1.25rem;
   }
 
   .content-here__icon {
@@ -1672,18 +1721,6 @@ main {
 @supports not (font-size: clamp( 1.25rem , 1.0765550239rem  +  0.956937799vw , 1.875rem )) {
     .dbd__error-result {
       font-size: calc(1.25rem + 0.625 * (100vw - 18.125rem) / 65.3125);
-    }
-}
-
-@supports (padding: clamp( 1.25rem , 0.7296650718rem  +  2.8708133971vw , 3.125rem )) {
-    .content-here__wrapper {
-      padding: clamp( 1.25rem , 0.7296650718rem  +  2.8708133971vw , 3.125rem );
-    }
-}
-
-@supports not (padding: clamp( 1.25rem , 0.7296650718rem  +  2.8708133971vw , 3.125rem )) {
-    .content-here__wrapper {
-      padding: calc(1.25rem + 1.875 * (100vw - 18.125rem) / 65.3125);
     }
 }
 

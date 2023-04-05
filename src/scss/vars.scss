@@ -28,6 +28,7 @@ $colorHoverClearBtn: #b54034;
 $colorResultTextTittle: #d9d0f0;
 
 $mainTextColor: #ffffff;
+$colorWhiteGray: #d6d6d6;
 
 $bgContentFone: rgba(0, 0, 0, 0.2666666667);
 $bgDarcContentFone: rgba(37, 37, 37, 0.537);
@@ -258,14 +259,71 @@ input::-webkit-inner-spin-button {
 }
 .content-here {
 	&__wrapper {
-		border: rem(1) dashed #c3c3c3;
+		border: rem(1) dashed $colorWhiteGray;
 		background-color: $bgContentFone;
 		width: 100%;
-		@include adaptiveValue("padding", 50, 20);
+		// @include adaptiveValue("padding", 50, 20);
+		padding: rem(60) rem(0) rem(0) rem(0);
 		border-radius: rem(20);
 		display: flex;
 		justify-content:center;
 		align-items: center;
+		position: relative;
+		&:before, &:after {
+			content: '';
+			position: absolute;
+			width: rem(20);
+			height: rem(40);
+			border-radius: rem(100);
+			border: rem(1) dashed $colorWhiteGray;
+			top: 0;
+			transform: translateY(-50%);
+		}
+
+		&:before {
+			left: rem(70);
+		}
+		&::after {
+			right: rem(70);
+		}
+	}
+	&__line {
+		// height: 0;
+		width: 100%;
+		border: rem(1) dashed $colorWhiteGray;
+		// padding-top: rem(70);
+		// background-color: $colorWhiteGray;
+		position: absolute;
+		top: rem(60);
+	}
+	
+	&__cells-wrapper {
+		padding: rem(10);
+		// border: solid rem(10) $colorWhiteGray;
+		// border-radius: rem(40);
+		display: grid;
+		grid-template-columns: repeat(7, 40px);
+		// grid-template-rows: 7;
+		gap: rem(10);
+		position: relative;
+
+		@media (max-width: em(450)){
+			grid-template-columns: repeat(7, 25px);
+			padding: rem(5);
+		}
+	}
+
+	
+	&__cell {
+		border-radius: rem(100);
+		width: 100%;
+		background-color: $colorWhiteGray;
+		aspect-ratio: 1/1;
+		opacity: 0.5;
+
+		// @media (max-width: em(450)){
+		// 	width: 30px;
+		// }
 	}
 
 	&__icon {

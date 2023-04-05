@@ -1300,12 +1300,45 @@
         if (true === isLoad && null === document.querySelector(".content-here__wrapper")) {
             const $el = document.querySelector(selector);
             $el.innerHTML = "";
-            $el.insertAdjacentHTML("beforeend", `\n\t\t\t<div class="content-here__wrapper">\n\t\t\t<span class="_icon-content content-here__icon"></span>\n\t\t\t</div>\n\t\t\t`);
-            document.querySelector(".content-here__wrapper").style.transform = "scale(0)";
+            $el.insertAdjacentHTML("beforeend", `\n\t\t\t<div class="content-here__wrapper">\n\t\t\t<div class="content-here__cells-wrapper">\n\t\t\t\n\t\t\t</div>\n\t\t\t<div class="content-here__line"></div>\n\t\t\t</div>\n\t\t\t`);
+            function cellsGenerate(num) {
+                document.querySelector(".content-here__cells-wrapper").insertAdjacentHTML("beforeend", `\n\t\t\t\t\t<div class="content-here__cell cell${num}"></div>\n\t\t\t\t`);
+            }
+            let randomNumberStart = Math.floor(7 * Math.random()) + 1;
+            let randomNumberMonth = Math.floor(4 * Math.random()) + 28;
+            console.log("randomNumberStart", randomNumberStart);
+            console.log("randomNumberMonth", randomNumberMonth);
+            for (let i = 1; i <= 42; i++) {
+                const colorWeekends = "#d24f41";
+                cellsGenerate(i);
+                if (i >= randomNumberStart && i < randomNumberMonth + randomNumberStart) document.querySelector(`.cell${i}`).style.opacity = 1;
+                if (i % 7 === 0) {
+                    document.querySelector(`.cell${i}`).style.backgroundColor = colorWeekends;
+                    let saturday = i - 1;
+                    document.querySelector(`.cell${saturday}`).style.backgroundColor = colorWeekends;
+                }
+            }
+            anime_es({
+                targets: ".content-here__cell",
+                scale: [ {
+                    value: .1,
+                    easing: "easeOutSine",
+                    duration: 2e3
+                }, {
+                    value: 1,
+                    easing: "easeInOutQuad",
+                    duration: 1500
+                } ],
+                delay: anime_es.stagger(400, {
+                    grid: [ 7, 6 ],
+                    from: `${randomNumberStart - 1}`
+                }),
+                loop: true
+            });
             anime_es({
                 targets: ".content-here__wrapper",
                 scale: {
-                    value: 1,
+                    value: [ 0, 1 ],
                     duration: 700
                 }
             });
@@ -1322,29 +1355,26 @@
         if (true === options.isError) {
             $el.innerHTML = "";
             $el.insertAdjacentHTML("beforeend", `\n\t\t<div class="result-render-dbd error-blinking-result unselectable">\n\t\t\t<h4 class='tittle tittle-error tittle-result'>Помилка!!!</h4>\n\t\t\t<div class="dbd__column-result">\n\t\t\t\t<p class="error-result">${options.errorMessage}</p>\n\t\t\t</div>\n\t\t</div>\n\t\t`);
-            document.querySelector(".result-render-dbd").style.transform = "scale(0)";
             anime_es({
                 targets: ".result-render-dbd",
                 scale: {
-                    value: 1,
+                    value: [ 0, 1 ],
                     duration: 700
                 }
             });
         } else if (false === options.isError) {
             $el.innerHTML = "";
             $el.insertAdjacentHTML("beforeend", `\n\t\t\t<div class="result-render-dbd">\n\t\t\t\t<h4 class="tittle dbd__tittle tittle-result">Результат</h4>\n\t\t\t\t<div class="dbd__table">\n\t\t\t\t\t<div class="dbd__title-result-wrapper">\n\t\t\t\t\t\t\t<div class="dbd__column-title">\n\t\t\t\t\t\t\t\t<p>Період&nbsp;${incldFirstDayRender()}:</p>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class="dbd__column-result">\n\t\t\t\t\t\t\t\t<p>${options.starDate} - ${currentOrSetEndDate}</p>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class="dbd__title-result-wrapper">\n\t\t\t\t\t\t<div class="dbd__column-title">\n\t\t\t\t\t\t\t<p>Інтервал:</p>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class="dbd__column-result">\n\t\t\t\t\t\t\t<p>${options.years}р. ${options.months}міс. ${options.days}дн.</p>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class="dbd__title-result-wrapper">\n\t\t\t\t\t\t<div class="dbd__column-title">\n\t\t\t\t\t\t\t<p>Календарних&nbsp;днів:</p>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class="dbd__column-result">\n\t\t\t\t\t\t\t<p>${options.totalDays} дн.</p>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t`);
-            const resultElem = document.querySelector(".result-render-dbd");
-            resultElem.style.transform = "scale(0) translateY(550px)";
+            document.querySelector(".result-render-dbd");
             anime_es({
                 targets: ".result-render-dbd",
                 translateY: {
-                    value: 0,
-                    duration: 700
+                    value: [ -300, 0 ],
+                    duration: 1e3
                 },
                 scale: {
-                    value: 1,
-                    duration: 300,
-                    easing: "easeInOutQuad"
+                    value: [ 0, 1 ],
+                    duration: 1e3
                 }
             });
         }

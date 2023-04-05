@@ -13,17 +13,65 @@ export function contentDefault(selector) {
 		
 			$el.innerHTML = ''
 			
+			// $el.insertAdjacentHTML('beforeend', `
+			// <div class="content-here__wrapper">
+			// <span class="_icon-content content-here__icon"></span>
+			// </div>
+			// `)
+			
 			$el.insertAdjacentHTML('beforeend', `
 			<div class="content-here__wrapper">
-			<span class="_icon-content content-here__icon"></span>
+			<div class="content-here__cells-wrapper">
+			
+			</div>
+			<div class="content-here__line"></div>
 			</div>
 			`)
-
-			document.querySelector('.content-here__wrapper').style.transform = 'scale(0)'
+			
+			function cellsGenerate(num) {
+				document.querySelector('.content-here__cells-wrapper').insertAdjacentHTML('beforeend', `
+					<div class="content-here__cell cell${num}"></div>
+				`)
+			}
+			
+			let randomNumberStart = Math.floor(Math.random() * 7) + 1;
+			let randomNumberMonth = Math.floor(Math.random() * 4) + 28;
+			console.log('randomNumberStart', randomNumberStart);
+			console.log('randomNumberMonth', randomNumberMonth);
+			const startD = 1
+			for (let i = 1; i <= 42; i++) {
+				const colorWeekends = '#d24f41'
+				cellsGenerate(i)
+				if (i >= randomNumberStart && i < randomNumberMonth + randomNumberStart) {
+					document.querySelector(`.cell${i}`).style.opacity = 1
+					// document.querySelector(`.cell${i}`).innerHTML = i - randomNumberStart + 1
+				}
+				// if (i <= 7) {
+				// 	document.querySelector(`.cell${i}`).style.opacity = 0.2
+				// }
+				// if (i >= 36) {
+				// 	document.querySelector(`.cell${i}`).style.opacity = 0.2
+				// }
+				if (i % 7 === 0) {
+					document.querySelector(`.cell${i}`).style.backgroundColor = colorWeekends
+					let saturday = i - 1
+					document.querySelector(`.cell${saturday}`).style.backgroundColor = colorWeekends
+				}
+			}
+			anime({
+				targets: '.content-here__cell',
+				scale: [
+					{value: 0.1, easing: 'easeOutSine', duration: 2000},
+					{value: 1, easing: 'easeInOutQuad', duration: 1500},
+				],
+				delay: anime.stagger(400, {grid: [7, 6], from: `${randomNumberStart - 1}`}),
+				loop: true,
+			});
+			
 			anime({
 				targets: '.content-here__wrapper',
 				scale: {
-					value: 1,
+					value: [0, 1],
 					duration: 700,
 					// easing: 'easeInOutExpo'
 				},
@@ -67,11 +115,10 @@ export function resultRenderHtml(selector, options) {
 		</div>
 		`)
 
-		document.querySelector('.result-render-dbd').style.transform = 'scale(0)'
 		anime({
 			targets: '.result-render-dbd',
 			scale: {
-				value: 1,
+				value: [0, 1],
 				duration: 700,
 			},
 		});
@@ -112,17 +159,18 @@ export function resultRenderHtml(selector, options) {
 		`)
 		const resultElem = document.querySelector('.result-render-dbd')
 
-		resultElem.style.transform = 'scale(0) translateY(550px)'
+		// resultElem.style.transform = 'scale(0) translateY(550px)'
 		anime({
 			targets: '.result-render-dbd',
 			translateY:  {
-				value: 0,
-				duration: 700,
+				value: [-300, 0],
+				duration: 1000,
+				// easing: 'easeInOutCirc'
 			},
 			scale: {
-				value: 1,
-				duration: 300,
-				easing: 'easeInOutQuad'
+				value: [0, 1],
+				duration: 1000,
+				// easing: 'easeInOutCirc'
 			},
 		});
 		
