@@ -264,11 +264,14 @@ input::-webkit-inner-spin-button {
 		width: 100%;
 		// @include adaptiveValue("padding", 50, 20);
 		padding: rem(60) rem(0) rem(0) rem(0);
-		border-radius: rem(20);
+		border-radius: rem(30);
 		display: flex;
 		justify-content:center;
 		align-items: center;
 		position: relative;
+		@media (max-width: em(450)){
+			border-radius: rem(20);
+		}
 		&:before, &:after {
 			content: '';
 			position: absolute;
@@ -309,7 +312,8 @@ input::-webkit-inner-spin-button {
 
 		@media (max-width: em(450)){
 			grid-template-columns: repeat(7, 25px);
-			padding: rem(5);
+			padding: rem(7);
+			gap: rem(7);
 		}
 	}
 
@@ -319,7 +323,7 @@ input::-webkit-inner-spin-button {
 		width: 100%;
 		background-color: $colorWhiteGray;
 		aspect-ratio: 1/1;
-		opacity: 0.5;
+		opacity: 0.2;
 
 		// @media (max-width: em(450)){
 		// 	width: 30px;

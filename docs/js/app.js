@@ -1350,7 +1350,7 @@
         let currentOrSetEndDate = "";
         if ("current" === options.endDate) currentOrSetEndDate = options.curentData; else currentOrSetEndDate = options.endDate;
         function incldFirstDayRender() {
-            if (true === options.includingFirstDay) return `(включно)`; else return ``;
+            if (true === options.includingFirstDay) return ` (включно)`; else return ``;
         }
         if (true === options.isError) {
             $el.innerHTML = "";
@@ -1364,7 +1364,7 @@
             });
         } else if (false === options.isError) {
             $el.innerHTML = "";
-            $el.insertAdjacentHTML("beforeend", `\n\t\t\t<div class="result-render-dbd">\n\t\t\t\t<h4 class="tittle dbd__tittle tittle-result">Результат</h4>\n\t\t\t\t<div class="dbd__table">\n\t\t\t\t\t<div class="dbd__title-result-wrapper">\n\t\t\t\t\t\t\t<div class="dbd__column-title">\n\t\t\t\t\t\t\t\t<p>Період&nbsp;${incldFirstDayRender()}:</p>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class="dbd__column-result">\n\t\t\t\t\t\t\t\t<p>${options.starDate} - ${currentOrSetEndDate}</p>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class="dbd__title-result-wrapper">\n\t\t\t\t\t\t<div class="dbd__column-title">\n\t\t\t\t\t\t\t<p>Інтервал:</p>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class="dbd__column-result">\n\t\t\t\t\t\t\t<p>${options.years}р. ${options.months}міс. ${options.days}дн.</p>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class="dbd__title-result-wrapper">\n\t\t\t\t\t\t<div class="dbd__column-title">\n\t\t\t\t\t\t\t<p>Календарних&nbsp;днів:</p>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class="dbd__column-result">\n\t\t\t\t\t\t\t<p>${options.totalDays} дн.</p>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t`);
+            $el.insertAdjacentHTML("beforeend", `\n\t\t\t<div class="result-render-dbd">\n\t\t\t\t<h4 class="tittle dbd__tittle tittle-result">Результат</h4>\n\t\t\t\t<div class="dbd__table">\n\t\t\t\t\t<div class="dbd__title-result-wrapper">\n\t\t\t\t\t\t\t<div class="dbd__column-title">\n\t\t\t\t\t\t\t\t<p>Період${incldFirstDayRender()}:</p>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class="dbd__column-result">\n\t\t\t\t\t\t\t\t<p>${options.starDate} - ${currentOrSetEndDate}</p>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class="dbd__title-result-wrapper">\n\t\t\t\t\t\t<div class="dbd__column-title">\n\t\t\t\t\t\t\t<p>Інтервал:</p>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class="dbd__column-result">\n\t\t\t\t\t\t\t<p>${options.years}р. ${options.months}міс. ${options.days}дн.</p>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class="dbd__title-result-wrapper">\n\t\t\t\t\t\t<div class="dbd__column-title">\n\t\t\t\t\t\t\t<p>Календарних&nbsp;днів:</p>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class="dbd__column-result">\n\t\t\t\t\t\t\t<p>${options.totalDays} дн.</p>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t`);
             document.querySelector(".result-render-dbd");
             anime_es({
                 targets: ".result-render-dbd",

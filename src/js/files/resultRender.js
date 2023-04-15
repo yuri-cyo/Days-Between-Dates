@@ -13,12 +13,6 @@ export function contentDefault(selector) {
 		
 			$el.innerHTML = ''
 			
-			// $el.insertAdjacentHTML('beforeend', `
-			// <div class="content-here__wrapper">
-			// <span class="_icon-content content-here__icon"></span>
-			// </div>
-			// `)
-			
 			$el.insertAdjacentHTML('beforeend', `
 			<div class="content-here__wrapper">
 			<div class="content-here__cells-wrapper">
@@ -46,12 +40,6 @@ export function contentDefault(selector) {
 					document.querySelector(`.cell${i}`).style.opacity = 1
 					// document.querySelector(`.cell${i}`).innerHTML = i - randomNumberStart + 1
 				}
-				// if (i <= 7) {
-				// 	document.querySelector(`.cell${i}`).style.opacity = 0.2
-				// }
-				// if (i >= 36) {
-				// 	document.querySelector(`.cell${i}`).style.opacity = 0.2
-				// }
 				if (i % 7 === 0) {
 					document.querySelector(`.cell${i}`).style.backgroundColor = colorWeekends
 					let saturday = i - 1
@@ -95,7 +83,7 @@ export function resultRenderHtml(selector, options) {
 
 	function incldFirstDayRender() {
 		if (options.includingFirstDay === true) {
-			return `(включно)`
+			return ` (включно)`
 		} else {
 			return ``
 		}
@@ -132,7 +120,7 @@ export function resultRenderHtml(selector, options) {
 				<div class="dbd__table">
 					<div class="dbd__title-result-wrapper">
 							<div class="dbd__column-title">
-								<p>Період&nbsp;${incldFirstDayRender()}:</p>
+								<p>Період${incldFirstDayRender()}:</p>
 							</div>
 							<div class="dbd__column-result">
 								<p>${options.starDate} - ${currentOrSetEndDate}</p>
